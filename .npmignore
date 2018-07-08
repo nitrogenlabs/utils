@@ -1,0 +1,9 @@
+.vscode
+node_modules
+src
+.gitignore
+.npmignore
+lex.config.js
+tsconfig.json
+yarn-error.log
+yarn.lock
