@@ -1,13 +1,31 @@
+import crypto, {Hash} from 'crypto';
 import {isString, replace} from 'lodash';
+
+export const createPassword = (password: string, salt: string): string => {
+  // Create encrypted password
+  if(salt && password) {
+    const secret: Buffer = crypto.pbkdf2Sync(password, salt, 10000, 32, 'sha512');
+    const md5: Hash = crypto.createHash('md5');
+    md5.update(secret.toString(), 'utf8');
+    return md5.digest('hex');
+  }
+
+  return '';
+};
+
+export const generateHash = (key: string): string => {
+  // Create Hash
+  const md5 = crypto.createHash('md5');
+  md5.update(`${+(new Date())}${key}`, 'utf8');
+  return md5.digest('hex');
+};
 
 export const parseChar = (str: string, max?: number): string => {
   if(isString(str) && str !== 'undefined') {
-    str = replace(str, /[^a-zA-Z]+/g, '').substr(0, max);
-  } else {
-    str = '';
+    return replace(str.trim(), /[^a-zA-Z]+/g, '').substr(0, max);
   }
 
-  return str.trim();
+  return '';
 };
 
 export const parseEmail = (email: string): string => {
@@ -19,12 +37,10 @@ export const parseEmail = (email: string): string => {
 
 export const parseId = (id: string): string => {
   if(isString(id) && id !== 'undefined') {
-    id = replace(id, /[^\w]/g, '').substr(0, 32);
-  } else {
-    id = '';
+    return replace(id.trim(), /[^\w]/g, '').substr(0, 32);
   }
 
-  return id.trim();
+  return '';
 };
 
 export const parsePassword = (password: string): string => {
@@ -32,43 +48,50 @@ export const parsePassword = (password: string): string => {
 };
 
 export const parseString = (str: string, max?: number, defaultValue = ''): string => {
+  let formatStr: string;
+
   if(str) {
+    formatStr = str.trim();
+
     if(max) {
-      str = str.toString().substr(0, max);
+      formatStr = formatStr.toString().substr(0, max);
     } else {
-      str = str.toString();
+      formatStr = formatStr.toString();
     }
   } else {
-    str = '';
+    formatStr = '';
   }
 
-  str = str.trim();
-
-  if(defaultValue && str === '') {
-    str = defaultValue;
+  if(defaultValue && formatStr === '') {
+    formatStr = defaultValue;
   }
 
-  return str;
+  return formatStr;
+};
+
+export const parseTags = (str: string = ''): string[] => {
+  const list: string[] = str.split(',');
+  const regex: RegExp = new RegExp('^[a-z][a-z0-9]*$');
+
+  return list.map((item: string) => item.trim().toLowerCase())
+    .filter((item: string) => regex.test(item))
+    .map((item: string) => `"${item}"`);
 };
 
 export const parseUrl = (url: string): string => {
   if(isString(url) && url !== 'undefined') {
-    url = encodeURI(url);
-  } else {
-    url = '';
+    return encodeURI(url.trim());
   }
 
-  return url.trim();
+  return '';
 };
 
 export const parseUsername = (username: string): string => {
   if(isString(username) && username !== 'undefined') {
-    username = username.replace(/[^\w]/g, '').substr(0, 32);
-  } else {
-    username = '';
+    return username.replace(/[^\w]/g, '').substr(0, 32).trim().toLowerCase();
   }
 
-  return username.trim().toLowerCase();
+  return '';
 };
 
 export const parseVarChar = (str: string, max?: number, defaultValue = ''): string => {
@@ -87,4 +110,12 @@ export const parseVarChar = (str: string, max?: number, defaultValue = ''): stri
   }
 
   return str;
+};
+
+export const stripHTML = (html: string): string => {
+  if(isString(html) && html !== 'undefined') {
+    return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '');
+  }
+
+  return '';
 };

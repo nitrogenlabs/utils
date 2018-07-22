@@ -2,6 +2,7 @@ import {PhoneNumber, PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenu
 import {isString} from 'lodash';
 import numeral from 'numeral';
 
+
 export const formatPhone = (phoneNumber: string, countryCode: string = 'US'): string => {
   const phoneUtil = PhoneNumberUtil.getInstance();
 
@@ -47,19 +48,21 @@ export const pad = (num: number, size: number): string => {
 };
 
 export const parseNum = (num, max?: number): number => {
-  if(isString(num)) {
+  let formatNum = num;
+
+  if(isString(formatNum)) {
     if(max) {
-      num = num.replace(/\D/g, '').substr(0, max);
+      formatNum = formatNum.replace(/\D/g, '').substr(0, max);
     } else {
-      num = num.replace(/\D/g, '');
+      formatNum = formatNum.replace(/\D/g, '');
     }
   } else if(max) {
-    num = +(num.toString().substr(0, max));
+    formatNum = +(formatNum.toString().substr(0, max));
   }
 
-  num = parseFloat(num);
+  formatNum = parseFloat(formatNum);
 
-  return isNaN(num) ? null : num;
+  return isNaN(formatNum) ? null : formatNum;
 };
 
 export const roundToHalf = (value): number => {
@@ -68,7 +71,7 @@ export const roundToHalf = (value): number => {
 
   if(decimal > 5) {
     return Math.ceil(converted);
-  } else {
-    return parseInt(converted.toString(), 10) + 0.5;
   }
+
+  return parseInt(converted.toString(), 10) + 0.5;
 };
