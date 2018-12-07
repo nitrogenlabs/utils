@@ -1,4 +1,5 @@
 import crypto, {Hash} from 'crypto';
+import {PhoneNumber, PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
 import {isString, replace} from 'lodash';
 
 export const createPassword = (password: string, salt: string): string => {
@@ -20,12 +21,12 @@ export const generateHash = (key: string): string => {
   return md5.digest('hex');
 };
 
-export const parseChar = (str: string, max?: number): string => {
+export const parseChar = (str: string, max?: number, defaultValue?: string): string => {
   if(isString(str) && str !== 'undefined') {
     return replace(str.trim(), /[^a-zA-Z]+/g, '').substr(0, max);
   }
 
-  return '';
+  return defaultValue || '';
 };
 
 export const parseEmail = (email: string): string => {
@@ -45,6 +46,17 @@ export const parseId = (id: string): string => {
 
 export const parsePassword = (password: string): string => {
   return (password || '').trim().substr(0, 32);
+};
+
+export const parsePhone = (phoneNumber: string, countryCode: string = 'US'): string => {
+  const phoneUtil = PhoneNumberUtil.getInstance();
+
+  try {
+    const parsedNumber: PhoneNumber = phoneUtil.parse(phoneNumber, countryCode);
+    return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
+  } catch(e) {
+    return '';
+  }
 };
 
 export const parseString = (str: string, max?: number, defaultValue = ''): string => {

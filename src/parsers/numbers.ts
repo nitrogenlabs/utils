@@ -1,18 +1,5 @@
-import {PhoneNumber, PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
 import {isString} from 'lodash';
 import numeral from 'numeral';
-
-
-export const formatPhone = (phoneNumber: string, countryCode: string = 'US'): string => {
-  const phoneUtil = PhoneNumberUtil.getInstance();
-
-  try {
-    const parsedNumber: PhoneNumber = phoneUtil.parse(phoneNumber, countryCode);
-    return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
-  } catch(e) {
-    return '';
-  }
-};
 
 export const getCurrencyFormat = (amount: number, currency: string = 'USD', format: string = '0,0.00'): string => {
   let prefix: string;

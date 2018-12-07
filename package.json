@@ -2,7 +2,7 @@
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
   "version": "0.1.6",
-  "main": "index.js",
+  "main": "./lib",
   "keywords": [
     "nlabs",
     "formatting",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "lex compile -r",
-    "deploy": "yarn build && yarn publish --access restricted",
+    "prepublishOnly": "yarn build",
     "reset": "lex clean && yarn",
     "test": "lex test",
     "update": "lex update -i",
