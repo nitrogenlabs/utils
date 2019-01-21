@@ -1,6 +1,8 @@
 import crypto, {Hash} from 'crypto';
 import {PhoneNumber, PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
-import {isString, replace} from 'lodash';
+import isString from 'lodash/isString';
+import replace from 'lodash/replace';
+import uniq from 'lodash/uniq';
 
 export const createPassword = (password: string, salt: string): string => {
   // Create encrypted password
@@ -53,10 +55,23 @@ export const parsePhone = (phoneNumber: string, countryCode: string = 'US'): str
 
   try {
     const parsedNumber: PhoneNumber = phoneUtil.parse(phoneNumber, countryCode);
-    return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
+
+    if(phoneUtil.isValidNumber(parsedNumber)) {
+      return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
+    }
+
+    return '';
   } catch(e) {
     return '';
   }
+};
+
+export const parseMentions = (str: string = ''): string[] => {
+  const list: string[] = str.match(/(^|\s)([@][a-z\d-_]+)/gi) || [];
+  const regex: RegExp = new RegExp('^[@][a-z][a-z0-9]*$');
+
+  return uniq(list.map((item: string) => item.trim().toLowerCase())
+    .filter((item: string) => regex.test(item)));
 };
 
 export const parseString = (str: string, max?: number, defaultValue = ''): string => {
@@ -82,12 +97,11 @@ export const parseString = (str: string, max?: number, defaultValue = ''): strin
 };
 
 export const parseTags = (str: string = ''): string[] => {
-  const list: string[] = str.split(',');
-  const regex: RegExp = new RegExp('^[a-z][a-z0-9]*$');
+  const list: string[] = str.match(/(^|\s)([#][a-z\d-_]+)/gi) || [];
+  const regex: RegExp = new RegExp('^[#][a-z][a-z0-9]*$');
 
-  return list.map((item: string) => item.trim().toLowerCase())
-    .filter((item: string) => regex.test(item))
-    .map((item: string) => `"${item}"`);
+  return uniq(list.map((item: string) => item.trim().toLowerCase())
+    .filter((item: string) => regex.test(item)));
 };
 
 export const parseUrl = (url: string): string => {
