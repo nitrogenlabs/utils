@@ -16,10 +16,10 @@ export const createPassword = (password: string, salt: string): string => {
   return '';
 };
 
-export const generateHash = (key: string): string => {
+export const generateHash = (key: string, salt: string = (+(new Date())).toString()): string => {
   // Create Hash
   const md5 = crypto.createHash('md5');
-  md5.update(`${+(new Date())}${key}`, 'utf8');
+  md5.update(`${salt}${key}`, 'utf8');
   return md5.digest('hex');
 };
 
@@ -70,7 +70,7 @@ export const parseMentions = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([@][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[@][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase())
+  return uniq(list.map((item: string) => item.trim().toLowerCase().substr(0, 33))
     .filter((item: string) => regex.test(item)));
 };
 
@@ -100,7 +100,7 @@ export const parseTags = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([#][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[#][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase())
+  return uniq(list.map((item: string) => item.trim().toLowerCase().substr(0, 33))
     .filter((item: string) => regex.test(item)));
 };
 
