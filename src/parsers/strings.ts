@@ -16,10 +16,11 @@ export const createPassword = (password: string, salt: string): string => {
   return '';
 };
 
-export const generateHash = (key: string, salt: string = (+(new Date())).toString()): string => {
+export const createHash = (key: string, salt: string = (+(new Date())).toString()): string => {
   // Create Hash
-  const md5 = crypto.createHash('md5');
-  md5.update(`${salt}${key}`, 'utf8');
+  const md5: Hash = crypto.createHash('md5');
+  const salted: string = salt ? `${salt}${key}` : key;
+  md5.update(salted, 'utf8');
   return md5.digest('hex');
 };
 
