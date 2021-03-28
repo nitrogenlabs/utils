@@ -24,6 +24,23 @@ export const createHash = (key: string, salt: string = (+(new Date())).toString(
   return md5.digest('hex');
 };
 
+export const parseArangoId = (id: string): string => {
+  if(isString(id) && id !== 'undefined') {
+    const idParts: string[] = id.split('/');
+
+    if(idParts.length !== 2) {
+      return '';
+    }
+
+    const collectionName: string = replace((id[0] || '').trim(), /[^a-zA-Z]+/g, '').substr(0, 32);
+    const key: string = replace((id[1] || '').trim(), /[^\w]/g, '').substr(0, 32);
+
+    return `${collectionName}/${key}`;
+  }
+
+  return '';
+};
+
 export const parseChar = (str: string, max?: number, defaultValue?: string): string => {
   if(isString(str) && str !== 'undefined') {
     return replace(str.trim(), /[^a-zA-Z]+/g, '').substr(0, max);
