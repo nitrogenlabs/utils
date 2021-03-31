@@ -32,8 +32,8 @@ export const parseArangoId = (id: string): string => {
       return '';
     }
 
-    const collectionName: string = replace((id[0] || '').trim(), /[^a-zA-Z]+/g, '').substr(0, 32);
-    const key: string = replace((id[1] || '').trim(), /[^\w]/g, '').substr(0, 32);
+    const collectionName: string = replace((idParts[0] || '').trim(), /[^a-zA-Z]+/g, '').substr(0, 32);
+    const key: string = replace((idParts[1] || '').trim(), /[^\w]/g, '').substr(0, 32);
 
     return `${collectionName}/${key}`;
   }

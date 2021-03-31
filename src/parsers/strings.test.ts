@@ -1,6 +1,20 @@
-import {parseChar, parseEmail, parseId} from './strings';
+import {parseArangoId, parseChar, parseEmail, parseId} from './strings';
 
 describe('StringService', () => {
+  describe('.parseArangoId', () => {
+    it('should trim id', () => {
+      expect(parseArangoId(' hello/world ')).toEqual('hello/world');
+    });
+
+    it('should return empty string for incorrect format', () => {
+      expect(parseArangoId('hello')).toEqual('');
+    });
+
+    it('should filter commands', () => {
+      expect(parseArangoId('hello/world) FILTER h.test == "test"')).toEqual('hello/worldFILTERhtesttest');
+    });
+  });
+
   describe('.parseChar', () => {
     it('should trim whitespace', () => {
       expect(parseChar(' test ')).toEqual('test');

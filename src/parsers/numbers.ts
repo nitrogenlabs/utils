@@ -2,7 +2,7 @@ import {isString} from 'lodash';
 import numeral from 'numeral';
 import {NumberFormatOptions} from 'types/numbers';
 
-export const getCurrencyFormat = (amount: number, currency: string = 'USD', format: string = '0,0.00'): string => {
+export const getCurrencyFormat = (amount: number = 0, currency: string = 'USD', format: string = '0,0.00'): string => {
   let prefix: string;
   currency = currency.toUpperCase();
 
@@ -17,15 +17,15 @@ export const getCurrencyFormat = (amount: number, currency: string = 'USD', form
   return `${prefix}${numeral(amount).format(format)}`;
 };
 
-export const getMeters = (miles: number, decimals: number = 1): number => {
+export const getMeters = (miles: number = 0, decimals: number = 1): number => {
   return +((miles * 1609.344).toFixed(decimals));
 };
 
-export const getMiles = (meters: number, decimals: number = 1): number => {
+export const getMiles = (meters: number = 0, decimals: number = 1): number => {
   return +((meters * 0.000621371192).toFixed(decimals));
 };
 
-export const pad = (num: number, size: number): string => {
+export const pad = (num: number = 0, size: number): string => {
   let s = num + '';
 
   while(s.length < size) {
@@ -35,7 +35,7 @@ export const pad = (num: number, size: number): string => {
   return s;
 };
 
-export const parseNum = (num, max?: number): number => {
+export const parseNum = (num: any = 0, max?: number): number => {
   let formatNum = num;
 
   if(isString(formatNum)) {
