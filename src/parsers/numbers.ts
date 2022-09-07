@@ -1,4 +1,4 @@
-import {isString} from 'lodash';
+import isString from 'lodash/isString';
 import numeral from 'numeral';
 import {NumberFormatOptions} from 'types/numbers';
 

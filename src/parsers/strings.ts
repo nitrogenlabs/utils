@@ -32,8 +32,8 @@ export const parseArangoId = (id: string): string => {
       return '';
     }
 
-    const collectionName: string = replace((idParts[0] || '').trim(), /[^a-zA-Z]+/g, '').substr(0, 32);
-    const key: string = replace((idParts[1] || '').trim(), /[^\w]/g, '').substr(0, 32);
+    const collectionName: string = replace((idParts[0] || '').trim(), /[^a-zA-Z]+/g, '').substring(0, 32);
+    const key: string = replace((idParts[1] || '').trim(), /[^\w]/g, '').substring(0, 32);
 
     return `${collectionName}/${key}`;
   }
@@ -43,14 +43,14 @@ export const parseArangoId = (id: string): string => {
 
 export const parseChar = (str: string, max?: number, defaultValue?: string): string => {
   if(isString(str) && str !== 'undefined') {
-    return replace(str.trim(), /[^a-zA-Z]+/g, '').substr(0, max);
+    return replace(str.trim(), /[^a-zA-Z]+/g, '').substring(0, max);
   }
 
   return defaultValue || '';
 };
 
 export const parseEmail = (email: string): string => {
-  email = (email || '').trim().substr(0, 128).toLowerCase();
+  email = (email || '').trim().substring(0, 128).toLowerCase();
   const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
   return email !== '' && regex.test(email) ? email : '';
@@ -58,14 +58,14 @@ export const parseEmail = (email: string): string => {
 
 export const parseId = (id: string): string => {
   if(isString(id) && id !== 'undefined') {
-    return replace(id.trim(), /[^\w]/g, '').substr(0, 32);
+    return replace(id.trim(), /[^\w]/g, '').substring(0, 32);
   }
 
   return '';
 };
 
 export const parsePassword = (password: string): string => {
-  return (password || '').trim().substr(0, 32);
+  return (password || '').trim().substring(0, 32);
 };
 
 export const parsePhone = (phoneNumber: string, countryCode: string = 'US'): string => {
@@ -88,7 +88,7 @@ export const parseMentions = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([@][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[@][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase().substr(0, 33))
+  return uniq(list.map((item: string) => item.trim().toLowerCase().substring(0, 33))
     .filter((item: string) => regex.test(item)));
 };
 
@@ -99,7 +99,7 @@ export const parseString = (str: string, max?: number, defaultValue = ''): strin
     formatStr = str.trim();
 
     if(max) {
-      formatStr = formatStr.toString().substr(0, max);
+      formatStr = formatStr.toString().substring(0, max);
     } else {
       formatStr = formatStr.toString();
     }
@@ -118,7 +118,7 @@ export const parseTags = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([#][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[#][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase().substr(0, 33))
+  return uniq(list.map((item: string) => item.trim().toLowerCase().substring(0, 33))
     .filter((item: string) => regex.test(item)));
 };
 
@@ -132,7 +132,7 @@ export const parseUrl = (url: string): string => {
 
 export const parseUsername = (username: string): string => {
   if(isString(username) && username !== 'undefined') {
-    return username.replace(/[^\w]/g, '').substr(0, 32).trim().toLowerCase();
+    return username.replace(/[^\w]/g, '').substring(0, 32).trim().toLowerCase();
   }
 
   return '';
@@ -143,7 +143,7 @@ export const parseVarChar = (str: string, max?: number, defaultValue = ''): stri
     str = replace(str.toString().trim(), /[^\w\s]/g, '');
 
     if(max) {
-      str = str.substr(0, max);
+      str = str.substring(0, max);
     }
   } else {
     str = '';

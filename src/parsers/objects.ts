@@ -1,6 +1,6 @@
-import {cloneDeep} from 'lodash/cloneDeep';
-import {isPlainObject} from 'lodash/isPlainObject';
-import {mapValues} from 'lodash/mapValues';
+import cloneDeep from 'lodash/cloneDeep';
+import isPlainObject from 'lodash/isPlainObject';
+import mapValues from 'lodash/mapValues';
 
 export const lowerCaseKeys = (obj = {}): object => {
   const newObj = {...cloneDeep(obj)};
