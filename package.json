@@ -22,7 +22,7 @@
     "url": "https://github.com/nitrogenlabs/utils/issues"
   },
   "scripts": {
-    "build": "lex compile -r",
+    "build": "lex compile --remove",
     "prepublish": "npm run build",
     "publish:major": "npm version major && npm run publish:tags && npm publish",
     "publish:minor": "npm version minor && npm run publish:tags && npm publish",
@@ -30,21 +30,21 @@
     "publish:tags": "git push --tags && git push origin HEAD",
     "reset": "lex clean && npm i",
     "test": "lex test",
-    "update": "lex update -i",
+    "update": "lex update --interactive",
     "versions": "lex versions",
-    "watch": "lex compile -r -w"
+    "watch": "lex compile --remove --watch"
   },
   "dependencies": {
-    "google-libphonenumber": "^3.2.30",
+    "@nlabs/rip-hunter": "^2.6.4",
+    "google-libphonenumber": "^3.2.34",
     "haversine": "^1.1.1",
     "lodash": "^4.17.21",
-    "luxon": "^3.0.3",
-    "numeral": "^2.0.6",
-    "rip-hunter": "^1.3.3"
+    "luxon": "^3.4.4",
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
-    "@types/jest": "^29.0.0",
-    "@types/luxon": "^3.0.1",
-    "@types/node": "^18.7.16"
+    "@types/jest": "^29.5.11",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^20.11.8"
   }
 }
