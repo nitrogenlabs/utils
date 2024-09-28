@@ -122,6 +122,9 @@ export const parseTags = (str: string = ''): string[] => {
     .filter((item: string) => regex.test(item)));
 };
 
+export const parseTemplate = (template: string, variables: {[key: string]: any}): string =>
+  template.replace(/\[(.*?)\]/g, (match, token) => variables[token] || match);
+
 export const parseUrl = (url: string): string => {
   if(isString(url) && url !== 'undefined') {
     return encodeURI(url.trim());

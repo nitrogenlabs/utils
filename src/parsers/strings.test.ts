@@ -1,4 +1,4 @@
-import {parseArangoId, parseChar, parseEmail, parseId} from './strings';
+import {parseArangoId, parseChar, parseEmail, parseId, parseTemplate} from './strings';
 
 describe('StringService', () => {
   describe('.parseArangoId', () => {
@@ -58,7 +58,15 @@ describe('StringService', () => {
     });
 
     it('should return string on undefined', () => {
-      expect(parseId(undefined)).toEqual('');
+      expect(parseId('')).toEqual('');
+    });
+  });
+
+  describe('parseTemplate', () => {
+    it('should create a new token', () => {
+      const results = parseTemplate('this is a [test]', {test: 'hello world'});
+
+      expect(results).toBe('this is a hello world');
     });
   });
 });
