@@ -1,8 +1,13 @@
-import isString from 'lodash/isString';
 import numeral from 'numeral';
 import {NumberFormatOptions} from 'types/numbers';
 
-export const getCurrencyFormat = (amount: number = 0, currency: string = 'USD', format: string = '0,0.00'): string => {
+import {isString} from '../checks/isString';
+
+export const getCurrencyFormat = (
+  amount: number = 0,
+  currency: string = 'USD',
+  format: string = '0,0.00'
+): string => {
   let prefix: string;
   currency = currency.toUpperCase();
 
@@ -17,19 +22,15 @@ export const getCurrencyFormat = (amount: number = 0, currency: string = 'USD', 
   return `${prefix}${numeral(amount).format(format)}`;
 };
 
-export const getMeters = (miles: number = 0, decimals: number = 1): number => {
-  return +((miles * 1609.344).toFixed(decimals));
-};
+export const getMeters = (miles: number = 0, decimals: number = 1): number => +(miles * 1609.344).toFixed(decimals);
 
-export const getMiles = (meters: number = 0, decimals: number = 1): number => {
-  return +((meters * 0.000621371192).toFixed(decimals));
-};
+export const getMiles = (meters: number = 0, decimals: number = 1): number => +(meters * 0.000621371192).toFixed(decimals);
 
 export const pad = (num: number = 0, size: number): string => {
-  let s = num + '';
+  let s = `${num}`;
 
   while(s.length < size) {
-    s = '0' + s;
+    s = `0${s}`;
   }
 
   return s;
@@ -45,7 +46,7 @@ export const parseNum = (num: any = 0, max?: number): number => {
       formatNum = formatNum.replace(/\D/g, '');
     }
   } else if(max) {
-    formatNum = +(formatNum.toString().substr(0, max));
+    formatNum = +formatNum.toString().substr(0, max);
   }
 
   formatNum = parseFloat(formatNum);
@@ -55,7 +56,9 @@ export const parseNum = (num: any = 0, max?: number): number => {
 
 export const roundToHalf = (value): number => {
   const converted: number = parseFloat(value);
-  const decimal = Math.ceil((converted - parseInt(converted.toString(), 10)) * 10);
+  const decimal = Math.ceil(
+    (converted - parseInt(converted.toString(), 10)) * 10
+  );
 
   if(decimal > 5) {
     return Math.ceil(converted);
@@ -79,7 +82,10 @@ export const roundToHalf = (value): number => {
  *     - minOrder = 1 means the k suffix should be used for numbers < 1,000
  *     - maxOrder = 1 means the k suffix should be used for numbers >= 1,000,000
  */
-export const formatNumber = (num: number, options: NumberFormatOptions = {}): string => {
+export const formatNumber = (
+  num: number,
+  options: NumberFormatOptions = {}
+): string => {
   const {
     maxDecimals = 0,
     maxOrder = Infinity,
@@ -121,15 +127,14 @@ export const formatNumber = (num: number, options: NumberFormatOptions = {}): st
     updatedNum /= Math.pow(10, order * 3);
   }
 
-  return (style === '$' ? '$' : '') +
-    updatedNum.toLocaleString(
-      'en-US',
-      {
-        maximumFractionDigits: maxDecimals,
-        minimumFractionDigits: minDecimals,
-        style: 'decimal'
-      }
-    ) +
+  return (
+    (style === '$' ? '$' : '') +
+    updatedNum.toLocaleString('en-US', {
+      maximumFractionDigits: maxDecimals,
+      minimumFractionDigits: minDecimals,
+      style: 'decimal'
+    }) +
     orderSuffix +
-    (style === '%' ? '%' : '');
+    (style === '%' ? '%' : '')
+  );
 };

@@ -1,13 +1,24 @@
 import crypto, {Hash} from 'crypto';
-import {PhoneNumber, PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
-import isString from 'lodash/isString';
-import replace from 'lodash/replace';
-import uniq from 'lodash/uniq';
+import {
+  PhoneNumber,
+  PhoneNumberFormat,
+  PhoneNumberUtil
+} from 'google-libphonenumber';
+
+import {uniq} from '../arrays/uniq';
+import {isString} from '../checks/isString';
+import {replace} from '../strings/replace';
 
 export const createPassword = (password: string, salt: string): string => {
   // Create encrypted password
   if(salt && password) {
-    const secret: Buffer = crypto.pbkdf2Sync(password, salt, 10000, 32, 'sha512');
+    const secret: Buffer = crypto.pbkdf2Sync(
+      password,
+      salt,
+      10000,
+      32,
+      'sha512'
+    );
     const md5: Hash = crypto.createHash('md5');
     md5.update(secret.toString(), 'utf8');
     return md5.digest('hex');
@@ -16,7 +27,10 @@ export const createPassword = (password: string, salt: string): string => {
   return '';
 };
 
-export const createHash = (key: string, salt: string = (+(new Date())).toString()): string => {
+export const createHash = (
+  key: string,
+  salt: string = (+new Date()).toString()
+): string => {
   // Create Hash
   const md5: Hash = crypto.createHash('md5');
   const salted: string = salt ? `${salt}${key}` : key;
@@ -32,8 +46,16 @@ export const parseArangoId = (id: string): string => {
       return '';
     }
 
-    const collectionName: string = replace((idParts[0] || '').trim(), /[^a-zA-Z]+/g, '').substring(0, 32);
-    const key: string = replace((idParts[1] || '').trim(), /[^\w]/g, '').substring(0, 32);
+    const collectionName: string = replace(
+      (idParts[0] || '').trim(),
+      /[^a-zA-Z]+/g,
+      ''
+    ).substring(0, 32);
+    const key: string = replace(
+      (idParts[1] || '').trim(),
+      /[^\w]/g,
+      ''
+    ).substring(0, 32);
 
     return `${collectionName}/${key}`;
   }
@@ -41,7 +63,11 @@ export const parseArangoId = (id: string): string => {
   return '';
 };
 
-export const parseChar = (str: string, max?: number, defaultValue?: string): string => {
+export const parseChar = (
+  str: string,
+  max?: number,
+  defaultValue?: string
+): string => {
   if(isString(str) && str !== 'undefined') {
     return replace(str.trim(), /[^a-zA-Z]+/g, '').substring(0, max);
   }
@@ -64,11 +90,12 @@ export const parseId = (id: string): string => {
   return '';
 };
 
-export const parsePassword = (password: string): string => {
-  return (password || '').trim().substring(0, 32);
-};
+export const parsePassword = (password: string): string => (password || '').trim().substring(0, 32);
 
-export const parsePhone = (phoneNumber: string, countryCode: string = 'US'): string => {
+export const parsePhone = (
+  phoneNumber: string,
+  countryCode: string = 'US'
+): string => {
   const phoneUtil = PhoneNumberUtil.getInstance();
 
   try {
@@ -88,11 +115,18 @@ export const parseMentions = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([@][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[@][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase().substring(0, 33))
-    .filter((item: string) => regex.test(item)));
+  return uniq(
+    list
+      .map((item: string) => item.trim().toLowerCase().substring(0, 33))
+      .filter((item: string) => regex.test(item))
+  );
 };
 
-export const parseString = (str: string, max?: number, defaultValue = ''): string => {
+export const parseString = (
+  str: string,
+  max?: number,
+  defaultValue = ''
+): string => {
   let formatStr: string;
 
   if(str) {
@@ -118,11 +152,17 @@ export const parseTags = (str: string = ''): string[] => {
   const list: string[] = str.match(/(^|\s)([#][a-z\d-_]+)/gi) || [];
   const regex: RegExp = new RegExp('^[#][a-z][a-z0-9]*$');
 
-  return uniq(list.map((item: string) => item.trim().toLowerCase().substring(0, 33))
-    .filter((item: string) => regex.test(item)));
+  return uniq(
+    list
+      .map((item: string) => item.trim().toLowerCase().substring(0, 33))
+      .filter((item: string) => regex.test(item))
+  );
 };
 
-export const parseTemplate = (template: string, variables: {[key: string]: any}): string =>
+export const parseTemplate = (
+  template: string,
+  variables: { [key: string]: any }
+): string =>
   template.replace(/\[(.*?)\]/g, (match, token) => variables[token] || match);
 
 export const parseUrl = (url: string): string => {
@@ -141,7 +181,11 @@ export const parseUsername = (username: string): string => {
   return '';
 };
 
-export const parseVarChar = (str: string, max?: number, defaultValue = ''): string => {
+export const parseVarChar = (
+  str: string,
+  max?: number,
+  defaultValue = ''
+): string => {
   if(str) {
     str = replace(str.toString().trim(), /[^\w\s]/g, '');
 

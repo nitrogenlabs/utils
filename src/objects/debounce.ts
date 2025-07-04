@@ -6,7 +6,7 @@ export const debounce = <T extends (...args: any[]) => any>(
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   let lastCallTime: number | undefined;
   let result: ReturnType<T>;
-  const { leading = false, trailing = true } = options;
+  const {leading = false, trailing = true} = options;
 
   const invokeFunc = (time: number, ...args: any[]) => {
     result = func.apply(undefined, args);
@@ -39,7 +39,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 
   const timerExpired = () => {
     const time = Date.now();
-    if (shouldInvoke(time)) {
+    if(shouldInvoke(time)) {
       return trailingEdge(time);
     }
     timeoutId = startTimer(timerExpired, remainingWait(time));
@@ -48,7 +48,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 
   const trailingEdge = (time: number) => {
     timeoutId = undefined;
-    if (trailing && lastCallTime) {
+    if(trailing && lastCallTime) {
       return invokeFunc(time);
     }
     lastCallTime = undefined;
@@ -56,7 +56,7 @@ export const debounce = <T extends (...args: any[]) => any>(
   };
 
   const cancel = () => {
-    if (timeoutId !== undefined) {
+    if(timeoutId !== undefined) {
       cancelTimer(timeoutId);
     }
     lastCallTime = undefined;
@@ -64,22 +64,22 @@ export const debounce = <T extends (...args: any[]) => any>(
   };
 
   const flush = () =>
-    timeoutId === undefined ? result : trailingEdge(Date.now());
+    (timeoutId === undefined ? result : trailingEdge(Date.now()));
 
-  const debounced = function (this: any, ...args: any[]) {
+  const debounced = function(this: any, ...args: any[]) {
     const time = Date.now();
     const isInvoking = shouldInvoke(time);
     lastCallTime = time;
-    if (isInvoking) {
-      if (timeoutId === undefined) {
+    if(isInvoking) {
+      if(timeoutId === undefined) {
         return leadingEdge(lastCallTime, ...args);
       }
-      if (trailing) {
+      if(trailing) {
         timeoutId = startTimer(timerExpired, wait);
         return invokeFunc(lastCallTime, ...args);
       }
     }
-    if (timeoutId === undefined) {
+    if(timeoutId === undefined) {
       timeoutId = startTimer(timerExpired, wait);
     }
     return result;

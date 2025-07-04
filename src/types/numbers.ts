@@ -3,8 +3,8 @@ export interface NumberFormatOptions {
   readonly maxOrder?: number;
   readonly minDecimals?: number;
   readonly minOrder?: number;
-  readonly orderSuffixes?: string[],
-  readonly style?: string
-  readonly useOrderSuffix?: boolean
-  readonly valueIfNaN?: string
+  readonly orderSuffixes?: string[];
+  readonly style?: string;
+  readonly useOrderSuffix?: boolean;
+  readonly valueIfNaN?: string;
 }

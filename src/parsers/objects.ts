@@ -1,6 +1,6 @@
-import cloneDeep from 'lodash/cloneDeep';
-import isPlainObject from 'lodash/isPlainObject';
-import mapValues from 'lodash/mapValues';
+import {isPlainObject} from '../checks/isPlainObject';
+import {cloneDeep} from '../objects';
+import {mapValues} from '../objects/mapValues';
 
 export const lowerCaseKeys = (obj = {}): object => {
   const newObj = {...cloneDeep(obj)};
@@ -16,8 +16,9 @@ export const lowerCaseKeys = (obj = {}): object => {
   return newObj;
 };
 
-export const toQueryString = (json = {}): string => {
-  return Object.keys(json)
-    .map((key: string) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`)
-    .join('&');
-};
+export const toQueryString = (json = {}): string => Object.keys(json)
+  .map(
+    (key: string) =>
+      `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`
+  )
+  .join('&');

@@ -1,7 +1,6 @@
-import {isEmpty} from 'lodash/isEmpty';
-import {merge} from 'lodash/merge';
-
-import {InputSelectGetType, PatternParseType} from '../types/formatters';
+import { isEmpty } from '../checks';
+import { merge } from '../objects';
+import { InputSelectGetType, PatternParseType } from '../types/formatters';
 
 declare global {
   interface Window {
@@ -57,7 +56,8 @@ class PatternMatcher {
     const matches = this.getMatches(pattern);
     let mCount: number = 0;
     let iCount: number = 0;
-    let i = 0, l;
+    let i = 0;
+    let l;
 
     const processMatch = (val) => {
       for(let j = 0, h = val.length; j < h; j++) {
@@ -112,8 +112,8 @@ export default class Formatter {
   inputs = [];
   inputRegs = {
     '*': /[A-Za-z0-9]/,
-    '9': /[0-9]/,
-    'a': /[A-Za-z]/
+    9: /[0-9]/,
+    a: /[A-Za-z]/
   };
   mLength;
   newPos: number = 0;
@@ -209,7 +209,9 @@ export default class Formatter {
     const range = document.selection.createRange();
     // Determine if there is a selection
     if(range && range.parentElement() === el) {
-      const inputRange = el.createTextRange(), endRange = el.createTextRange(), length = el.value.length;
+      const inputRange = el.createTextRange();
+      const endRange = el.createTextRange();
+      const {length} = el.value;
       // Create a working TextRange for the input selection
       inputRange.moveToBookmark(range.getBookmark());
       // Move endRange begin pos to end pos (hence endRange)
@@ -266,7 +268,9 @@ export default class Formatter {
 
   resetPattern(str): void {
     // Update opts to hold new pattern
-    this.opts.patterns = str ? this.specFromSinglePattern(str) : this.opts.patterns;
+    this.opts.patterns = str
+      ? this.specFromSinglePattern(str)
+      : this.opts.patterns;
 
     // Get current state
     this.sel = this.inputSelGet(this.el);
@@ -320,10 +324,17 @@ export default class Formatter {
     // Mozilla will trigger on special keys and assign the the value 0
     // We want to use that 0 rather than the keyCode it assigns.
     const keyCode: number = event.which || event.keyCode;
-    const isSpecial: boolean = this.isSpecialKeyPress(event.which, event.keyCode);
+    const isSpecial: boolean = this.isSpecialKeyPress(
+      event.which,
+      event.keyCode
+    );
 
     // Process the keyCode and prevent default
-    if(!this.isDelKeyPress(event.which, event.keyCode) && !isSpecial && !this.isModifier(event)) {
+    if(
+      !this.isDelKeyPress(event.which, event.keyCode) &&
+      !isSpecial &&
+      !this.isModifier(event)
+    ) {
       this.processKey(String.fromCharCode(keyCode), false);
       return event.preventDefault();
     }
@@ -341,7 +352,8 @@ export default class Formatter {
       // Grab selection
       const selection = this.inputSelGet(this.el);
       // Char check
-      const isAfterStart = selection.end > this.focus, isFirstChar = selection.end === 0;
+      const isAfterStart = selection.end > this.focus;
+      const isFirstChar = selection.end === 0;
       // If clicked in front of start, refocus to start
       if(isAfterStart || isFirstChar) {
         this.inputSelSet(this.el, this.focus);
@@ -444,7 +456,7 @@ export default class Formatter {
       const val = this.val.charAt(pos);
 
       // Remove char and account for shift
-      if(curChar && curChar === val || curHldr && curHldr === val) {
+      if((curChar && curChar === val) || (curHldr && curHldr === val)) {
         this.val = this.removeChars(this.val, pos, pos + 1);
         shift--;
       }
@@ -468,7 +480,8 @@ export default class Formatter {
 
       // Checks
       const isBadType = !this.inputRegs[inputType];
-      const isInvalid = !isBadType && !this.inputRegs[inputType].test(this.val.charAt(i));
+      const isInvalid =
+        !isBadType && !this.inputRegs[inputType].test(this.val.charAt(i));
       const inBounds = this.inputs[i];
 
       // Remove if incorrect and inbounds
@@ -580,7 +593,9 @@ export default class Formatter {
 
   getMatchingKey(which: number, keyCode: number, keys?): boolean {
     // Loop over and return if matched.
-    return keys.some((key: KeyboardEvent) => which === key.which && keyCode === key.keyCode);
+    return keys.some(
+      (key: KeyboardEvent) => which === key.which && keyCode === key.keyCode
+    );
   }
 
   isSpecialKeyPress(which: number, keyCode: number): boolean {
@@ -600,9 +615,7 @@ export default class Formatter {
   }
 
   isBetween(num: number, bounds): boolean {
-    bounds.sort((a, b) => {
-      return a - b;
-    });
+    bounds.sort((a, b) => a - b);
 
     return num > bounds[0] && num < bounds[1];
   }
