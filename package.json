@@ -36,15 +36,15 @@
   },
   "dependencies": {
     "@nlabs/rip-hunter": "2.6.4",
-    "google-libphonenumber": "3.2.38",
+    "google-libphonenumber": "3.2.42",
     "haversine": "1.1.1",
     "lodash": "4.17.21",
-    "luxon": "3.5.0",
+    "luxon": "3.6.1",
     "numeral": "2.0.6"
   },
   "devDependencies": {
-    "@types/jest": "29.5.13",
-    "@types/luxon": "3.4.2",
-    "@types/node": "22.7.4"
+    "@types/jest": "30.0.0",
+    "@types/luxon": "3.6.2",
+    "@types/node": "24.0.10"
   }
 }
