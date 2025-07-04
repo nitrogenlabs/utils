@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "1.5.2",
+  "version": "2.0.0",
   "main": "./lib",
   "types": "./lib/index.d.ts",
   "type": "module",
@@ -50,7 +50,6 @@
       "import": "./lib/objects/has.js",
       "types": "./lib/objects/has.d.ts"
     },
-
     "./objects/keys": {
       "import": "./lib/objects/keys.js",
       "types": "./lib/objects/keys.d.ts"
@@ -226,12 +225,24 @@
   },
   "typesVersions": {
     "*": {
-      "objects/*": ["./lib/objects/*"],
-      "strings/*": ["./lib/strings/*"],
-      "arrays/*": ["./lib/arrays/*"],
-      "checks/*": ["./lib/checks/*"],
-      "formatters/*": ["./lib/formatters/*"],
-      "parsers/*": ["./lib/parsers/*"]
+      "objects/*": [
+        "./lib/objects/*"
+      ],
+      "strings/*": [
+        "./lib/strings/*"
+      ],
+      "arrays/*": [
+        "./lib/arrays/*"
+      ],
+      "checks/*": [
+        "./lib/checks/*"
+      ],
+      "formatters/*": [
+        "./lib/formatters/*"
+      ],
+      "parsers/*": [
+        "./lib/parsers/*"
+      ]
     }
   },
   "keywords": [
