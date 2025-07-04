@@ -3,6 +3,14 @@
   "description": "Formatting Utilities",
   "version": "1.5.1",
   "main": "./lib",
+  "types": "./lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
   "keywords": [
     "nlabs",
     "formatting",
