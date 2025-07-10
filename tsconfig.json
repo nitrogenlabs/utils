@@ -5,35 +5,37 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
     "inlineSourceMap": true,
-    "jsx": "react",
+    "isolatedModules": true,
+    "jsx": "react-jsx",
     "lib": [
-      "es6",
-      "es7",
       "esnext",
-      "dom"
+      "dom",
+      "dom.iterable"
     ],
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
-    "outDir": "./lib",
+    "outDir": "lib",
     "pretty": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "target": "esnext",
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types",
       "node_modules/json-d-ts"
-    ]
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "**/*.test.*",
-    "./lib",
-    "./node_modules",
-    "./test"
-  ]
+    ],
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true
+  }
 }

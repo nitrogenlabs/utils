@@ -1,6 +1,6 @@
-export * from './chunk';
-export * from './compact';
-export * from './difference';
-export * from './intersection';
-export * from './uniq';
+export * from './chunk/chunk';
+export * from './compact/compact';
+export * from './difference/difference';
+export * from './intersection/intersection';
+export * from './uniq/uniq';
 

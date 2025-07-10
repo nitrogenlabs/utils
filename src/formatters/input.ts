@@ -1,6 +1,11 @@
-import { isEmpty } from '../checks';
-import { merge } from '../objects';
-import { InputSelectGetType, PatternParseType } from '../types/formatters';
+/**
+ * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
+ * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
+ */
+import {isEmpty} from '../checks';
+import {merge} from '../objects';
+
+import type {InputSelectGetType, PatternParseType} from '../types/formatters';
 
 declare global {
   interface Window {
@@ -13,27 +18,27 @@ declare global {
 }
 
 class PatternMatcher {
-  matchers = [];
-  patterns = [];
+  matchers: RegExp[] = [];
+  patterns: PatternParseType[] = [];
 
-  constructor(pattern) {
+  constructor(pattern: any[]) {
     // Methods
     this.parse = this.parse.bind(this);
     this.getMatches = this.getMatches.bind(this);
     this.parseMatcher = this.parseMatcher.bind(this);
     this.getPattern = this.getPattern.bind(this);
 
-    pattern.map((p) => {
-      const matcherStr = Object.keys(p)[0];
-      const patternStr = p[matcherStr];
+    pattern.forEach((p: Record<string, string>) => {
+      const matcherStr = Object.keys(p)[0] || '';
+      const patternStr = p[matcherStr] || '';
       const parsedPattern = this.parse(patternStr);
-      const regExpMatcher = this.parseMatcher(matcherStr);
+      const regExpMatcher: RegExp = this.parseMatcher(matcherStr);
       this.matchers.push(regExpMatcher);
       this.patterns.push(parsedPattern);
     });
   }
 
-  getMatches(pattern): any[] {
+  getMatches(pattern: string): any[] {
     const regexp = new RegExp('{{([^}]+)}}', 'g');
     const matches = [];
     let match = regexp.exec(pattern);
@@ -46,7 +51,7 @@ class PatternMatcher {
     return matches;
   }
 
-  parse(pattern): PatternParseType {
+  parse(pattern: string): PatternParseType {
     const info: PatternParseType = {
       chars: {},
       inputs: {}
@@ -59,7 +64,7 @@ class PatternMatcher {
     let i = 0;
     let l;
 
-    const processMatch = (val) => {
+    const processMatch = (val: string) => {
       for(let j = 0, h = val.length; j < h; j++) {
         info.inputs[iCount] = val.charAt(j);
         iCount++;
@@ -73,7 +78,7 @@ class PatternMatcher {
       if(mCount < matches.length && i === matches[mCount].index) {
         processMatch(matches[mCount][1]);
       } else {
-        info.chars[i - mCount * DELIM_SIZE] = pattern.charAt(i);
+        info.chars[i - (mCount * DELIM_SIZE)] = pattern.charAt(i);
       }
     }
 
@@ -82,7 +87,7 @@ class PatternMatcher {
     return info;
   }
 
-  parseMatcher(matcher): RegExp {
+  parseMatcher(matcher: string): RegExp {
     if(matcher === '*') {
       return /.*/;
     }
@@ -90,39 +95,42 @@ class PatternMatcher {
     return new RegExp(matcher);
   }
 
-  getPattern(input): any[] {
+  getPattern(input: string): PatternParseType {
     let idx;
 
-    this.matchers.map((m, i) => {
+    this.matchers.forEach((m, i) => {
       if(m.test(input)) {
         idx = i;
       }
     });
 
-    return idx === undefined ? null : this.patterns[idx];
+    return idx === undefined ? {} as PatternParseType : this.patterns[idx] as PatternParseType;
   }
 }
 
 export default class Formatter {
-  el;
-  chars = [];
-  delta;
-  focus = 0;
-  hldrs = {};
-  inputs = [];
+  el: HTMLInputElement;
+  chars: string[] = [];
+  delta: number = 0;
+  focus: number = 0;
+  hldrs: Record<string, string> = {};
+  inputs: HTMLInputElement[] = [];
   inputRegs = {
     '*': /[A-Za-z0-9]/,
     9: /[0-9]/,
     a: /[A-Za-z]/
   };
-  mLength;
+  mLength: number = 0;
   newPos: number = 0;
   opts;
   patternMatcher;
-  sel;
-  val;
+  sel: InputSelectGetType = {
+    begin: 0,
+    end: 0
+  };
+  val: string = '';
 
-  constructor(el, opts) {
+  constructor(el: HTMLInputElement, opts: any) {
     const defaults = {
       persistent: false,
       placeholder: ' ',
@@ -186,7 +194,7 @@ export default class Formatter {
     // Persistence
     if(this.opts.persistent) {
       // Format on start
-      this.processKey('', false);
+      this.processKey('', 0);
       this.el.blur();
 
       // Add Listeners
@@ -196,12 +204,12 @@ export default class Formatter {
     }
   }
 
-  inputSelGet(el): InputSelectGetType {
+  inputSelGet(el: HTMLInputElement): InputSelectGetType {
     // If normal browser return with result
     if(typeof el.selectionStart === 'number') {
       return {
-        begin: el.selectionStart,
-        end: el.selectionEnd
+        begin: el.selectionStart || 0,
+        end: el.selectionEnd || 0
       };
     }
 
@@ -209,8 +217,8 @@ export default class Formatter {
     const range = document.selection.createRange();
     // Determine if there is a selection
     if(range && range.parentElement() === el) {
-      const inputRange = el.createTextRange();
-      const endRange = el.createTextRange();
+      const inputRange = (el as any).createTextRange();
+      const endRange = (el as any).createTextRange();
       const {length} = el.value;
       // Create a working TextRange for the input selection
       inputRange.moveToBookmark(range.getBookmark());
@@ -240,7 +248,7 @@ export default class Formatter {
     };
   }
 
-  inputSelSet(el, pos): void {
+  inputSelSet(el: HTMLInputElement, pos: InputSelectGetType): void {
     // Normalize pos
     if(typeof pos !== 'object') {
       pos = {
@@ -253,8 +261,8 @@ export default class Formatter {
     if(el.setSelectionRange) {
       el.focus();
       el.setSelectionRange(pos.begin, pos.end);
-    } else if(el.createTextRange) {
-      const range = el.createTextRange();
+    } else if((el as any).createTextRange) {
+      const range = (el as any).createTextRange();
       range.collapse(true);
       range.moveEnd('character', pos.end);
       range.moveStart('character', pos.begin);
@@ -262,11 +270,11 @@ export default class Formatter {
     }
   }
 
-  addInputType(chr, reg): void {
-    this.inputRegs[chr] = reg;
+  addInputType(chr: string, reg: RegExp): void {
+    this.inputRegs[chr as keyof typeof this.inputRegs] = reg;
   }
 
-  resetPattern(str): void {
+  resetPattern(str: string): void {
     // Update opts to hold new pattern
     this.opts.patterns = str
       ? this.specFromSinglePattern(str)
@@ -285,12 +293,12 @@ export default class Formatter {
 
     // Update pattern
     const {mLength, chars, inputs} = this.patternMatcher.getPattern(this.val);
-    this.mLength = mLength;
-    this.chars = chars;
-    this.inputs = inputs;
+    this.mLength = mLength || 0;
+    this.chars = (chars || []) as any[];
+    this.inputs = (inputs || []) as any[];
 
     // Format on start
-    this.processKey('', false, true);
+    this.processKey('', 0, true);
   }
 
   updatePattern(): void {
@@ -301,9 +309,9 @@ export default class Formatter {
     // Otherwise, leave the current pattern (and likely delete the latest character.)
     if(newPattern) {
       // Get info about the given pattern
-      this.mLength = newPattern.mLength;
-      this.chars = newPattern.chars;
-      this.inputs = newPattern.inputs;
+      this.mLength = newPattern.mLength || 0;
+      this.chars = (newPattern.chars || []) as any[];
+      this.inputs = (newPattern.inputs || []) as any[];
     }
   }
 
@@ -314,12 +322,12 @@ export default class Formatter {
     // If delete key
     if(keyCode && this.isDelKeyDown(event.which, event.keyCode)) {
       // Process the keyCode and prevent default
-      this.processKey(null, keyCode);
+      this.processKey('', keyCode);
       return event.preventDefault();
     }
   }
 
-  onKeyPress(event): void {
+  onKeyPress(event: KeyboardEvent): void {
     // The first thing we need is the character code
     // Mozilla will trigger on special keys and assign the the value 0
     // We want to use that 0 rather than the keyCode it assigns.
@@ -335,14 +343,14 @@ export default class Formatter {
       !isSpecial &&
       !this.isModifier(event)
     ) {
-      this.processKey(String.fromCharCode(keyCode), false);
+      this.processKey(String.fromCharCode(keyCode), 0);
       return event.preventDefault();
     }
   }
 
-  onPaste(e): void {
+  onPaste(e: ClipboardEvent): void {
     // Process the clipboard paste and prevent default
-    this.processKey(this.getClip(e), false);
+    this.processKey(this.getClip(e), 0);
     return e.preventDefault();
   }
 
@@ -356,14 +364,14 @@ export default class Formatter {
       const isFirstChar = selection.end === 0;
       // If clicked in front of start, refocus to start
       if(isAfterStart || isFirstChar) {
-        this.inputSelSet(this.el, this.focus);
+        this.inputSelSet(this.el, {begin: this.focus, end: this.focus});
       }
     }, 0);
   }
 
-  processKey(chars, delKey, ignoreCaret?): boolean {
+  processKey(chars: string, delKey: number, ignoreCaret?: boolean): boolean {
     this.sel = this.inputSelGet(this.el);
-    this.val = this.el.value;
+    this.val = (this.el as HTMLInputElement).value;
     this.delta = 0;
 
     if(this.sel.begin !== this.sel.end) {
@@ -409,7 +417,7 @@ export default class Formatter {
     this.sel.begin++;
   }
 
-  formatValue(ignoreCaret): void {
+  formatValue(ignoreCaret?: boolean): void {
     // Set caret pos
     this.newPos = this.sel.end + this.delta;
 
@@ -434,7 +442,7 @@ export default class Formatter {
 
     // Set new caret position
     if(typeof ignoreCaret === 'undefined' || ignoreCaret === false) {
-      this.inputSelSet(this.el, this.newPos);
+      this.inputSelSet(this.el, {begin: this.newPos, end: this.newPos});
     }
   }
 
@@ -476,12 +484,12 @@ export default class Formatter {
     // Loop over each char and validate
     for(let i = 0, l = this.val.length; i < l; i++) {
       // Get char input type
-      const inputType = this.inputs[i];
+      const inputType: string = (this.inputs[i] as any) || '';
 
       // Checks
-      const isBadType = !this.inputRegs[inputType];
+      const isBadType = !this.inputRegs[inputType as keyof typeof this.inputRegs];
       const isInvalid =
-        !isBadType && !this.inputRegs[inputType].test(this.val.charAt(i));
+        !isBadType && !this.inputRegs[inputType as keyof typeof this.inputRegs].test(this.val.charAt(i));
       const inBounds = this.inputs[i];
 
       // Remove if incorrect and inbounds
@@ -496,36 +504,34 @@ export default class Formatter {
 
   addFormatChars(): void {
     if(this.opts.persistent) {
-      this.mLength.forEach((item, index: number) => {
+      for(let index = 0; index < this.mLength; index++) {
         if(!this.val.charAt(index)) {
           this.val = this.addChars(this.val, this.opts.placeholder, index);
           this.hldrs[index] = this.opts.placeholder;
         }
 
         this.addChar(index);
-      });
+      }
 
       while(this.chars[this.focus]) {
         this.focus++;
       }
     } else {
-      this.val.forEach((item, index: number) => {
+      for(let index = 0; index < this.val.length; index++) {
         if(this.delta <= 0 && index === this.focus) {
-          return true;
+          continue;
         }
 
         this.addChar(index);
-        return false;
-      });
+      }
     }
   }
 
   addChars(str: string, chars: string, pos: number): string {
-    return str.substr(0, pos) + chars + str.substr(pos, str.length);
+    return str.substring(0, pos) + chars + str.substring(pos, str.length);
   }
 
   addChar(position: number): boolean {
-    // If char exists at position
     const chr = this.chars[position];
 
     if(!chr) {
@@ -591,11 +597,11 @@ export default class Formatter {
     return this.getMatchingKey(which, keyCode, keys);
   }
 
-  getMatchingKey(which: number, keyCode: number, keys?): boolean {
-    // Loop over and return if matched.
-    return keys.some(
-      (key: KeyboardEvent) => which === key.which && keyCode === key.keyCode
-    );
+  getMatchingKey(which: number, keyCode: number, keys?: Record<string, {keyCode: number; which: number}>): boolean {
+    if(!keys) {
+      return false;
+    }
+    return Object.values(keys).some((key) => which === key.which && keyCode === key.keyCode);
   }
 
   isSpecialKeyPress(which: number, keyCode: number): boolean {
@@ -614,13 +620,17 @@ export default class Formatter {
     return this.getMatchingKey(which, keyCode, keys);
   }
 
-  isBetween(num: number, bounds): boolean {
-    bounds.sort((a, b) => a - b);
+  isBetween(num: number, bounds: number[]): boolean {
+    if(!bounds) {
+      return false;
+    }
 
-    return num > bounds[0] && num < bounds[1];
+    const [min = 0, max = 0] = bounds.sort((a, b) => a - b);
+
+    return num > min && num < max;
   }
 
-  getClip(e): any {
+  getClip(e: ClipboardEvent): any {
     if(e.clipboardData) {
       return e.clipboardData.getData('Text');
     }
@@ -630,7 +640,7 @@ export default class Formatter {
     }
   }
 
-  isModifier(e): number {
+  isModifier(e: KeyboardEvent): boolean {
     return e.ctrlKey || e.altKey || e.metaKey;
   }
 }

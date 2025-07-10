@@ -42,9 +42,9 @@
       "import": "./lib/objects/entries.js",
       "types": "./lib/objects/entries.d.ts"
     },
-    "./objects/get-set": {
-      "import": "./lib/objects/get-set.js",
-      "types": "./lib/objects/get-set.d.ts"
+    "./objects/get": {
+      "import": "./lib/objects/get.js",
+      "types": "./lib/objects/get.d.ts"
     },
     "./objects/has": {
       "import": "./lib/objects/has.js",
@@ -74,13 +74,17 @@
       "import": "./lib/objects/pick.js",
       "types": "./lib/objects/pick.d.ts"
     },
-    "./objects/values": {
-      "import": "./lib/objects/values.js",
-      "types": "./lib/objects/values.d.ts"
+    "./objects/set": {
+      "import": "./lib/objects/set.js",
+      "types": "./lib/objects/set.d.ts"
     },
     "./objects/stack-parser": {
       "import": "./lib/objects/stack-parser.js",
       "types": "./lib/objects/stack-parser.d.ts"
+    },
+    "./objects/values": {
+      "import": "./lib/objects/values.js",
+      "types": "./lib/objects/values.d.ts"
     },
     "./arrays": {
       "import": "./lib/arrays/index.js",
@@ -122,13 +126,13 @@
       "import": "./lib/strings/case.js",
       "types": "./lib/strings/case.d.ts"
     },
-    "./strings/replace": {
-      "import": "./lib/strings/replace.js",
-      "types": "./lib/strings/replace.d.ts"
-    },
     "./strings/escape": {
       "import": "./lib/strings/escape.js",
       "types": "./lib/strings/escape.d.ts"
+    },
+    "./strings/replace": {
+      "import": "./lib/strings/replace.js",
+      "types": "./lib/strings/replace.d.ts"
     },
     "./strings/trim": {
       "import": "./lib/strings/trim.js",
@@ -142,10 +146,6 @@
       "import": "./lib/checks/*.js",
       "types": "./lib/checks/*.d.ts"
     },
-    "./checks/isString": {
-      "import": "./lib/checks/isString.js",
-      "types": "./lib/checks/isString.d.ts"
-    },
     "./checks/isArray": {
       "import": "./lib/checks/isArray.js",
       "types": "./lib/checks/isArray.d.ts"
@@ -153,6 +153,14 @@
     "./checks/isBoolean": {
       "import": "./lib/checks/isBoolean.js",
       "types": "./lib/checks/isBoolean.d.ts"
+    },
+    "./checks/isEmpty": {
+      "import": "./lib/checks/isEmpty.js",
+      "types": "./lib/checks/isEmpty.d.ts"
+    },
+    "./checks/isEqual": {
+      "import": "./lib/checks/isEqual.js",
+      "types": "./lib/checks/isEqual.d.ts"
     },
     "./checks/isFunction": {
       "import": "./lib/checks/isFunction.js",
@@ -174,17 +182,13 @@
       "import": "./lib/checks/isPlainObject.js",
       "types": "./lib/checks/isPlainObject.d.ts"
     },
+    "./checks/isString": {
+      "import": "./lib/checks/isString.js",
+      "types": "./lib/checks/isString.d.ts"
+    },
     "./checks/isUndefined": {
       "import": "./lib/checks/isUndefined.js",
       "types": "./lib/checks/isUndefined.d.ts"
-    },
-    "./checks/isEmpty": {
-      "import": "./lib/checks/isEmpty.js",
-      "types": "./lib/checks/isEmpty.d.ts"
-    },
-    "./checks/isEqual": {
-      "import": "./lib/checks/isEqual.js",
-      "types": "./lib/checks/isEqual.d.ts"
     },
     "./formatters": {
       "import": "./lib/formatters/index.js",
@@ -286,8 +290,10 @@
     "numeral": "2.0.6"
   },
   "devDependencies": {
+    "@types/google-libphonenumber": "^7.4.30",
     "@types/jest": "30.0.0",
     "@types/luxon": "3.6.2",
-    "@types/node": "24.0.10"
+    "@types/node": "24.0.10",
+    "@types/numeral": "^2.0.5"
   }
 }

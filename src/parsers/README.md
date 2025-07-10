@@ -30,43 +30,48 @@ formatNumber(1234567, { useOrderSuffix: true }); // '1.2M'
 
 ## Functions
 
-### [Boolean Parsers](./booleans.md)
-- [parseBoolean](./booleans.md) - Parse boolean values with strict mode support
+### [Boolean Parsers](./booleans/booleans.md)
 
-### [Number Parsers](./numbers.md)
-- [formatNumber](./numbers.md) - Format numbers with suffixes and styles
-- [getCurrencyFormat](./numbers.md) - Format currency values
-- [getMeters](./numbers.md) - Convert miles to meters
-- [getMiles](./numbers.md) - Convert meters to miles
-- [pad](./numbers.md) - Pad numbers with leading zeros
-- [parseNum](./numbers.md) - Parse numeric strings
-- [roundToHalf](./numbers.md) - Round to nearest half
+- [parseBoolean](./booleans/booleans.md) - Parse boolean values with strict mode support
 
-### [Object Parsers](./objects.md)
-- [lowerCaseKeys](./objects.md) - Convert object keys to lowercase
-- [toQueryString](./objects.md) - Convert object to query string
+### [Number Parsers](./numbers/numbers.md)
 
-### [String Parsers](./strings.md)
-- [createPassword](./strings.md) - Create encrypted passwords
-- [createHash](./strings.md) - Generate MD5 hashes
-- [parseArangoId](./strings.md) - Parse ArangoDB document IDs
-- [parseChar](./strings.md) - Parse alphabetic characters
-- [parseEmail](./strings.md) - Validate and parse email addresses
-- [parseId](./strings.md) - Parse alphanumeric IDs
-- [parseMentions](./strings.md) - Extract @mentions from text
-- [parsePassword](./strings.md) - Parse and validate passwords
-- [parsePhone](./strings.md) - Parse and format phone numbers
-- [parseString](./strings.md) - Parse and trim strings
-- [parseTags](./strings.md) - Extract #hashtags from text
-- [parseTemplate](./strings.md) - Parse template strings with variables
-- [parseUrl](./strings.md) - Parse and encode URLs
-- [parseUsername](./strings.md) - Parse and validate usernames
-- [parseVarChar](./strings.md) - Parse variable character strings
-- [stripHTML](./strings.md) - Remove HTML tags from strings
+- [formatNumber](./numbers/numbers.md) - Format numbers with suffixes and styles
+- [getCurrencyFormat](./numbers/numbers.md) - Format currency values
+- [getMeters](./numbers/numbers.md) - Convert miles to meters
+- [getMiles](./numbers/numbers.md) - Convert meters to miles
+- [pad](./numbers/numbers.md) - Pad numbers with leading zeros
+- [parseNum](./numbers/numbers.md) - Parse numeric strings
+- [roundToHalf](./numbers/numbers.md) - Round to nearest half
+
+### [Object Parsers](./objects/objects.md)
+
+- [lowerCaseKeys](./objects/objects.md) - Convert object keys to lowercase
+- [toQueryString](./objects/objects.md) - Convert object to query string
+
+### [String Parsers](./strings/strings.md)
+
+- [createPassword](./strings/strings.md) - Create encrypted passwords
+- [createHash](./strings/strings.md) - Generate MD5 hashes
+- [parseArangoId](./strings/strings.md) - Parse ArangoDB document IDs
+- [parseChar](./strings/strings.md) - Parse alphabetic characters
+- [parseEmail](./strings/strings.md) - Validate and parse email addresses
+- [parseId](./strings/strings.md) - Parse alphanumeric IDs
+- [parseMentions](./strings/strings.md) - Extract @mentions from text
+- [parsePassword](./strings/strings.md) - Parse and validate passwords
+- [parsePhone](./strings/strings.md) - Parse and format phone numbers
+- [parseString](./strings/strings.md) - Parse and trim strings
+- [parseTags](./strings/strings.md) - Extract #hashtags from text
+- [parseTemplate](./strings/strings.md) - Parse template strings with variables
+- [parseUrl](./strings/strings.md) - Parse and encode URLs
+- [parseUsername](./strings/strings.md) - Parse and validate usernames
+- [parseVarChar](./strings/strings.md) - Parse variable character strings
+- [stripHTML](./strings/strings.md) - Remove HTML tags from strings
 
 ## Use Cases
 
 ### Form Validation
+
 ```js
 import { parseEmail, parsePhone, parseBoolean } from '@nlabs/utils/parsers';
 
@@ -90,6 +95,7 @@ function validateForm(data) {
 ```
 
 ### Data Sanitization
+
 ```js
 import { parseString, parseId, stripHTML } from '@nlabs/utils/parsers';
 
@@ -103,6 +109,7 @@ function sanitizeUserInput(input) {
 ```
 
 ### API Response Processing
+
 ```js
 import { lowerCaseKeys, toQueryString } from '@nlabs/utils/parsers';
 
@@ -116,6 +123,7 @@ const queryString = toQueryString({ page: 1, limit: 10 });
 ## Performance
 
 All parser functions are optimized for:
+
 - **Speed**: Fast string operations and minimal object creation
 - **Memory**: Efficient algorithms with low memory footprint
 - **Reliability**: Robust error handling and edge case coverage
