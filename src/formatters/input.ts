@@ -82,7 +82,7 @@ class PatternMatcher {
       }
     }
 
-    info.mLength = i - mCount * DELIM_SIZE;
+    info.mLength = i - (mCount * DELIM_SIZE);
 
     return info;
   }
@@ -104,7 +104,7 @@ class PatternMatcher {
       }
     });
 
-    return idx === undefined ? {} as PatternParseType : this.patterns[idx] as PatternParseType;
+    return idx === undefined ? ({} as const) as PatternParseType : this.patterns[idx] as PatternParseType;
   }
 }
 
@@ -250,22 +250,20 @@ export default class Formatter {
 
   inputSelSet(el: HTMLInputElement, pos: InputSelectGetType): void {
     // Normalize pos
-    if(typeof pos !== 'object') {
-      pos = {
-        begin: pos,
-        end: pos
-      };
-    }
+    const normalizedPos = typeof pos !== 'object' ? {
+      begin: pos,
+      end: pos
+    } : pos;
 
     // If normal browser
     if(el.setSelectionRange) {
       el.focus();
-      el.setSelectionRange(pos.begin, pos.end);
+      el.setSelectionRange(normalizedPos.begin, normalizedPos.end);
     } else if((el as any).createTextRange) {
       const range = (el as any).createTextRange();
       range.collapse(true);
-      range.moveEnd('character', pos.end);
-      range.moveStart('character', pos.begin);
+      range.moveEnd('character', normalizedPos.end);
+      range.moveStart('character', normalizedPos.begin);
       range.select();
     }
   }
@@ -325,6 +323,7 @@ export default class Formatter {
       this.processKey('', keyCode);
       return event.preventDefault();
     }
+    return undefined;
   }
 
   onKeyPress(event: KeyboardEvent): void {
@@ -346,6 +345,7 @@ export default class Formatter {
       this.processKey(String.fromCharCode(keyCode), 0);
       return event.preventDefault();
     }
+    return undefined;
   }
 
   onPaste(e: ClipboardEvent): void {
@@ -638,6 +638,7 @@ export default class Formatter {
     if(window.clipboardData) {
       return window.clipboardData.getData('Text');
     }
+    return '';
   }
 
   isModifier(e: KeyboardEvent): boolean {
