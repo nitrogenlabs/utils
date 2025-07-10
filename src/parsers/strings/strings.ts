@@ -3,11 +3,9 @@
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
 import crypto, {Hash} from 'crypto';
-import {
-  PhoneNumber,
-  PhoneNumberFormat,
-  PhoneNumberUtil
-} from 'google-libphonenumber';
+import libphonenumber from 'google-libphonenumber';
+
+const {PhoneNumberFormat, PhoneNumberUtil} = libphonenumber;
 
 import {uniq} from '../../arrays/uniq/uniq';
 import {isString} from '../../checks/isString';
@@ -143,7 +141,7 @@ export const parsePhone = (
   const phoneUtil = PhoneNumberUtil.getInstance();
 
   try {
-    const parsedNumber: PhoneNumber = phoneUtil.parse(phoneNumber, countryCode);
+    const parsedNumber = phoneUtil.parse(phoneNumber, countryCode);
 
     if(phoneUtil.isValidNumber(parsedNumber)) {
       return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
