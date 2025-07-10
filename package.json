@@ -147,48 +147,48 @@
       "types": "./lib/checks/*.d.ts"
     },
     "./checks/isArray": {
-      "import": "./lib/checks/isArray.js",
-      "types": "./lib/checks/isArray.d.ts"
+      "import": "./lib/checks/isArray/isArray.js",
+      "types": "./lib/checks/isArray/isArray.d.ts"
     },
     "./checks/isBoolean": {
-      "import": "./lib/checks/isBoolean.js",
-      "types": "./lib/checks/isBoolean.d.ts"
+      "import": "./lib/checks/isBoolean/isBoolean.js",
+      "types": "./lib/checks/isBoolean/isBoolean.d.ts"
     },
     "./checks/isEmpty": {
-      "import": "./lib/checks/isEmpty.js",
-      "types": "./lib/checks/isEmpty.d.ts"
+      "import": "./lib/checks/isEmpty/isEmpty.js",
+      "types": "./lib/checks/isEmpty/isEmpty.d.ts"
     },
     "./checks/isEqual": {
-      "import": "./lib/checks/isEqual.js",
-      "types": "./lib/checks/isEqual.d.ts"
+      "import": "./lib/checks/isEqual/isEqual.js",
+      "types": "./lib/checks/isEqual/isEqual.d.ts"
     },
     "./checks/isFunction": {
-      "import": "./lib/checks/isFunction.js",
-      "types": "./lib/checks/isFunction.d.ts"
+      "import": "./lib/checks/isFunction/isFunction.js",
+      "types": "./lib/checks/isFunction/isFunction.d.ts"
     },
     "./checks/isNull": {
-      "import": "./lib/checks/isNull.js",
-      "types": "./lib/checks/isNull.d.ts"
+      "import": "./lib/checks/isNull/isNull.js",
+      "types": "./lib/checks/isNull/isNull.d.ts"
     },
     "./checks/isNullish": {
-      "import": "./lib/checks/isNullish.js",
-      "types": "./lib/checks/isNullish.d.ts"
+      "import": "./lib/checks/isNullish/isNullish.js",
+      "types": "./lib/checks/isNullish/isNullish.d.ts"
     },
     "./checks/isNumber": {
-      "import": "./lib/checks/isNumber.js",
-      "types": "./lib/checks/isNumber.d.ts"
+      "import": "./lib/checks/isNumber/isNumber.js",
+      "types": "./lib/checks/isNumber/isNumber.d.ts"
     },
     "./checks/isPlainObject": {
-      "import": "./lib/checks/isPlainObject.js",
-      "types": "./lib/checks/isPlainObject.d.ts"
+      "import": "./lib/checks/isPlainObject/isPlainObject.js",
+      "types": "./lib/checks/isPlainObject/isPlainObject.d.ts"
     },
     "./checks/isString": {
-      "import": "./lib/checks/isString.js",
-      "types": "./lib/checks/isString.d.ts"
+      "import": "./lib/checks/isString/isString.js",
+      "types": "./lib/checks/isString/isString.d.ts"
     },
     "./checks/isUndefined": {
-      "import": "./lib/checks/isUndefined.js",
-      "types": "./lib/checks/isUndefined.d.ts"
+      "import": "./lib/checks/isUndefined/isUndefined.js",
+      "types": "./lib/checks/isUndefined/isUndefined.d.ts"
     },
     "./formatters": {
       "import": "./lib/formatters/index.js",
@@ -290,6 +290,7 @@
     "numeral": "2.0.6"
   },
   "devDependencies": {
+    "@jest/globals": "30.0.4",
     "@types/google-libphonenumber": "^7.4.30",
     "@types/jest": "30.0.0",
     "@types/luxon": "3.6.2",

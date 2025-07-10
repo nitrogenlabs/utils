@@ -1,4 +1,5 @@
-import { debounce } from './debounce';
+import {jest} from '@jest/globals';
+import {debounce} from './debounce';
 
 describe('debounce', () => {
   beforeEach(() => {

@@ -1,3 +1,4 @@
+import {jest} from '@jest/globals';
 import {mapValues} from './mapValues';
 
 describe('mapValues', () => {

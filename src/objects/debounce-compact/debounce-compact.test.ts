@@ -1,4 +1,5 @@
-import { debounceCompact } from './debounce-compact';
+import {jest} from '@jest/globals';
+import {debounceCompact} from './debounce-compact';
 
 describe('debounceCompact', () => {
   beforeEach(() => {

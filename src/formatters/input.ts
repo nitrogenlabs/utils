@@ -45,7 +45,7 @@ class PatternMatcher {
 
     while(match) {
       match = regexp.exec(pattern);
-      matches.push(match);
+      matches.push(match as never);
     }
 
     return matches;

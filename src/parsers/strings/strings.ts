@@ -8,7 +8,7 @@ import libphonenumber from 'google-libphonenumber';
 const {PhoneNumberFormat, PhoneNumberUtil} = libphonenumber;
 
 import {uniq} from '../../arrays/uniq/uniq';
-import {isString} from '../../checks/isString';
+import {isString} from '../../checks/isString/isString';
 import {replace} from '../../strings/replace/replace';
 
 export const createPassword = (password: string, salt: string): string => {

@@ -16,6 +16,10 @@ export const isEqual = (a: any, b: any): boolean => {
   }
 
   if(typeof a === 'object') {
+    if(a instanceof Date && b instanceof Date) {
+      return a.getTime() === b.getTime();
+    }
+
     if(Array.isArray(a) !== Array.isArray(b)) {
       return false;
     }
