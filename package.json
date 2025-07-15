@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
@@ -141,6 +141,10 @@
     "./strings/trim": {
       "import": "./lib/strings/trim.js",
       "types": "./lib/strings/trim.d.ts"
+    },
+    "./strings/cn": {
+      "import": "./lib/strings/cn/cn.js",
+      "types": "./lib/strings/cn/cn.d.ts"
     },
     "./checks": {
       "import": "./lib/checks/index.js",
