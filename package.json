@@ -34,6 +34,10 @@
       "import": "./lib/objects/debounce-compact.js",
       "types": "./lib/objects/debounce-compact.d.ts"
     },
+    "./objects/throttle": {
+      "import": "./lib/objects/throttle.js",
+      "types": "./lib/objects/throttle.d.ts"
+    },
     "./objects/defaults": {
       "import": "./lib/objects/defaults.js",
       "types": "./lib/objects/defaults.d.ts"

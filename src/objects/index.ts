@@ -14,4 +14,6 @@ export * from './omit/omit';
 export * from './pick/pick';
 export * from './set/set';
 export * from './stack-parser/stack-parser';
+export * from './throttle/throttle';
 export * from './values/values';
+
