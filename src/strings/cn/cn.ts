@@ -5,21 +5,6 @@
 
 type ClassValue = string | number | boolean | null | undefined | Record<string, any> | ClassValue[];
 
-/**
- * A utility function for conditionally joining class names together.
- * Optimized with modern ES features for better performance.
- *
- * @param inputs - Class names to join. Can be strings, numbers, booleans, objects, arrays, or null/undefined.
- * @returns A string of joined class names.
- *
- * @example
- * ```ts
- * cn('foo', 'bar') // => 'foo bar'
- * cn('foo', { bar: true, baz: false }) // => 'foo bar'
- * cn('foo', ['bar', { baz: true }]) // => 'foo bar baz'
- * cn('foo', null, undefined, false, 0, 'bar') // => 'foo 0 bar'
- * ```
- */
 export const cn = (...inputs: ClassValue[]): string => {
   const classes: string[] = [];
 

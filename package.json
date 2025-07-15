@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.3.0",
+  "version": "2.5.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
@@ -15,144 +15,148 @@
       "types": "./lib/objects/index.d.ts"
     },
     "./objects/*": {
-      "import": "./lib/objects/*.js",
-      "types": "./lib/objects/*.d.ts"
+      "import": "./lib/objects/*/index.js",
+      "types": "./lib/objects/*/index.d.ts"
     },
     "./objects/assign": {
-      "import": "./lib/objects/assign.js",
-      "types": "./lib/objects/assign.d.ts"
+      "import": "./lib/objects/assign/assign.js",
+      "types": "./lib/objects/assign/assign.d.ts"
     },
     "./objects/clone": {
-      "import": "./lib/objects/clone.js",
-      "types": "./lib/objects/clone.d.ts"
+      "import": "./lib/objects/clone/clone.js",
+      "types": "./lib/objects/clone/clone.d.ts"
     },
     "./objects/debounce": {
-      "import": "./lib/objects/debounce.js",
-      "types": "./lib/objects/debounce.d.ts"
+      "import": "./lib/objects/debounce/debounce.js",
+      "types": "./lib/objects/debounce/debounce.d.ts"
     },
     "./objects/debounce-compact": {
-      "import": "./lib/objects/debounce-compact.js",
-      "types": "./lib/objects/debounce-compact.d.ts"
+      "import": "./lib/objects/debounce-compact/debounce-compact.js",
+      "types": "./lib/objects/debounce-compact/debounce-compact.d.ts"
     },
     "./objects/throttle": {
       "import": "./lib/objects/throttle/throttle.js",
       "types": "./lib/objects/throttle/throttle.d.ts"
     },
     "./objects/defaults": {
-      "import": "./lib/objects/defaults.js",
-      "types": "./lib/objects/defaults.d.ts"
+      "import": "./lib/objects/defaults/defaults.js",
+      "types": "./lib/objects/defaults/defaults.d.ts"
     },
     "./objects/entries": {
-      "import": "./lib/objects/entries.js",
-      "types": "./lib/objects/entries.d.ts"
+      "import": "./lib/objects/entries/entries.js",
+      "types": "./lib/objects/entries/entries.d.ts"
     },
     "./objects/get": {
-      "import": "./lib/objects/get.js",
-      "types": "./lib/objects/get.d.ts"
+      "import": "./lib/objects/get/get.js",
+      "types": "./lib/objects/get/get.d.ts"
     },
     "./objects/has": {
-      "import": "./lib/objects/has.js",
-      "types": "./lib/objects/has.d.ts"
+      "import": "./lib/objects/has/has.js",
+      "types": "./lib/objects/has/has.d.ts"
     },
     "./objects/keys": {
-      "import": "./lib/objects/keys.js",
-      "types": "./lib/objects/keys.d.ts"
+      "import": "./lib/objects/keys/keys.js",
+      "types": "./lib/objects/keys/keys.d.ts"
     },
     "./objects/mapKeys": {
-      "import": "./lib/objects/mapKeys.js",
-      "types": "./lib/objects/mapKeys.d.ts"
+      "import": "./lib/objects/mapKeys/mapKeys.js",
+      "types": "./lib/objects/mapKeys/mapKeys.d.ts"
     },
     "./objects/mapValues": {
-      "import": "./lib/objects/mapValues.js",
-      "types": "./lib/objects/mapValues.d.ts"
+      "import": "./lib/objects/mapValues/mapValues.js",
+      "types": "./lib/objects/mapValues/mapValues.d.ts"
     },
     "./objects/merge": {
-      "import": "./lib/objects/merge.js",
-      "types": "./lib/objects/merge.d.ts"
+      "import": "./lib/objects/merge/merge.js",
+      "types": "./lib/objects/merge/merge.d.ts"
     },
     "./objects/omit": {
-      "import": "./lib/objects/omit.js",
-      "types": "./lib/objects/omit.d.ts"
+      "import": "./lib/objects/omit/omit.js",
+      "types": "./lib/objects/omit/omit.d.ts"
     },
     "./objects/pick": {
-      "import": "./lib/objects/pick.js",
-      "types": "./lib/objects/pick.d.ts"
+      "import": "./lib/objects/pick/pick.js",
+      "types": "./lib/objects/pick/pick.d.ts"
     },
     "./objects/set": {
-      "import": "./lib/objects/set.js",
-      "types": "./lib/objects/set.d.ts"
+      "import": "./lib/objects/set/set.js",
+      "types": "./lib/objects/set/set.d.ts"
     },
     "./objects/stack-parser": {
-      "import": "./lib/objects/stack-parser.js",
-      "types": "./lib/objects/stack-parser.d.ts"
+      "import": "./lib/objects/stack-parser/stack-parser.js",
+      "types": "./lib/objects/stack-parser/stack-parser.d.ts"
     },
     "./objects/values": {
-      "import": "./lib/objects/values.js",
-      "types": "./lib/objects/values.d.ts"
+      "import": "./lib/objects/values/values.js",
+      "types": "./lib/objects/values/values.d.ts"
     },
     "./arrays": {
       "import": "./lib/arrays/index.js",
       "types": "./lib/arrays/index.d.ts"
     },
     "./arrays/*": {
-      "import": "./lib/arrays/*.js",
-      "types": "./lib/arrays/*.d.ts"
+      "import": "./lib/arrays/*/index.js",
+      "types": "./lib/arrays/*/index.d.ts"
     },
     "./arrays/chunk": {
-      "import": "./lib/arrays/chunk.js",
-      "types": "./lib/arrays/chunk.d.ts"
+      "import": "./lib/arrays/chunk/chunk.js",
+      "types": "./lib/arrays/chunk/chunk.d.ts"
     },
     "./arrays/compact": {
-      "import": "./lib/arrays/compact.js",
-      "types": "./lib/arrays/compact.d.ts"
+      "import": "./lib/arrays/compact/compact.js",
+      "types": "./lib/arrays/compact/compact.d.ts"
     },
     "./arrays/difference": {
-      "import": "./lib/arrays/difference.js",
-      "types": "./lib/arrays/difference.d.ts"
+      "import": "./lib/arrays/difference/difference.js",
+      "types": "./lib/arrays/difference/difference.d.ts"
     },
     "./arrays/intersection": {
-      "import": "./lib/arrays/intersection.js",
-      "types": "./lib/arrays/intersection.d.ts"
+      "import": "./lib/arrays/intersection/intersection.js",
+      "types": "./lib/arrays/intersection/intersection.d.ts"
     },
     "./arrays/uniq": {
-      "import": "./lib/arrays/uniq.js",
-      "types": "./lib/arrays/uniq.d.ts"
+      "import": "./lib/arrays/uniq/uniq.js",
+      "types": "./lib/arrays/uniq/uniq.d.ts"
     },
     "./strings": {
       "import": "./lib/strings/index.js",
       "types": "./lib/strings/index.d.ts"
     },
     "./strings/*": {
-      "import": "./lib/strings/*.js",
-      "types": "./lib/strings/*.d.ts"
+      "import": "./lib/strings/*/index.js",
+      "types": "./lib/strings/*/index.d.ts"
     },
     "./strings/case": {
-      "import": "./lib/strings/case.js",
-      "types": "./lib/strings/case.d.ts"
-    },
-    "./strings/escape": {
-      "import": "./lib/strings/escape.js",
-      "types": "./lib/strings/escape.d.ts"
-    },
-    "./strings/replace": {
-      "import": "./lib/strings/replace.js",
-      "types": "./lib/strings/replace.d.ts"
-    },
-    "./strings/trim": {
-      "import": "./lib/strings/trim.js",
-      "types": "./lib/strings/trim.d.ts"
+      "import": "./lib/strings/case/case.js",
+      "types": "./lib/strings/case/case.d.ts"
     },
     "./strings/cn": {
       "import": "./lib/strings/cn/cn.js",
       "types": "./lib/strings/cn/cn.d.ts"
+    },
+    "./strings/escape": {
+      "import": "./lib/strings/escape/escape.js",
+      "types": "./lib/strings/escape/escape.d.ts"
+    },
+    "./strings/qs": {
+      "import": "./lib/strings/qs/qs.js",
+      "types": "./lib/strings/qs/qs.d.ts"
+    },
+    "./strings/replace": {
+      "import": "./lib/strings/replace/replace.js",
+      "types": "./lib/strings/replace/replace.d.ts"
+    },
+    "./strings/trim": {
+      "import": "./lib/strings/trim/trim.js",
+      "types": "./lib/strings/trim/trim.d.ts"
     },
     "./checks": {
       "import": "./lib/checks/index.js",
       "types": "./lib/checks/index.d.ts"
     },
     "./checks/*": {
-      "import": "./lib/checks/*.js",
-      "types": "./lib/checks/*.d.ts"
+      "import": "./lib/checks/*/index.js",
+      "types": "./lib/checks/*/index.d.ts"
     },
     "./checks/isArray": {
       "import": "./lib/checks/isArray/isArray.js",
@@ -215,24 +219,24 @@
       "types": "./lib/parsers/index.d.ts"
     },
     "./parsers/*": {
-      "import": "./lib/parsers/*.js",
-      "types": "./lib/parsers/*.d.ts"
+      "import": "./lib/parsers/*/index.js",
+      "types": "./lib/parsers/*/index.d.ts"
     },
     "./parsers/booleans": {
-      "import": "./lib/parsers/booleans.js",
-      "types": "./lib/parsers/booleans.d.ts"
+      "import": "./lib/parsers/booleans/booleans.js",
+      "types": "./lib/parsers/booleans/booleans.d.ts"
     },
     "./parsers/numbers": {
-      "import": "./lib/parsers/numbers.js",
-      "types": "./lib/parsers/numbers.d.ts"
+      "import": "./lib/parsers/numbers/numbers.js",
+      "types": "./lib/parsers/numbers/numbers.d.ts"
     },
     "./parsers/objects": {
-      "import": "./lib/parsers/objects.js",
-      "types": "./lib/parsers/objects.d.ts"
+      "import": "./lib/parsers/objects/objects.js",
+      "types": "./lib/parsers/objects/objects.d.ts"
     },
     "./parsers/strings": {
-      "import": "./lib/parsers/strings.js",
-      "types": "./lib/parsers/strings.d.ts"
+      "import": "./lib/parsers/strings/strings.js",
+      "types": "./lib/parsers/strings/strings.d.ts"
     }
   },
   "typesVersions": {
