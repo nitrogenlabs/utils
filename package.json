@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.6.0",
+  "version": "2.7.1",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
@@ -15,8 +15,8 @@
       "types": "./lib/objects/index.d.ts"
     },
     "./objects/*": {
-      "import": "./lib/objects/*/index.js",
-      "types": "./lib/objects/*/index.d.ts"
+      "import": "./lib/objects/*/**.js",
+      "types": "./lib/objects/*/**.d.ts"
     },
     "./objects/assign": {
       "import": "./lib/objects/assign/assign.js",
@@ -95,8 +95,8 @@
       "types": "./lib/arrays/index.d.ts"
     },
     "./arrays/*": {
-      "import": "./lib/arrays/*/index.js",
-      "types": "./lib/arrays/*/index.d.ts"
+      "import": "./lib/arrays/*/**.js",
+      "types": "./lib/arrays/*/**.d.ts"
     },
     "./arrays/chunk": {
       "import": "./lib/arrays/chunk/chunk.js",
@@ -114,6 +114,14 @@
       "import": "./lib/arrays/intersection/intersection.js",
       "types": "./lib/arrays/intersection/intersection.d.ts"
     },
+    "./arrays/orderBy": {
+      "import": "./lib/arrays/orderBy/orderBy.js",
+      "types": "./lib/arrays/orderBy/orderBy.d.ts"
+    },
+    "./arrays/pullAllBy": {
+      "import": "./lib/arrays/pullAllBy/pullAllBy.js",
+      "types": "./lib/arrays/pullAllBy/pullAllBy.d.ts"
+    },
     "./arrays/uniq": {
       "import": "./lib/arrays/uniq/uniq.js",
       "types": "./lib/arrays/uniq/uniq.d.ts"
@@ -123,8 +131,8 @@
       "types": "./lib/strings/index.d.ts"
     },
     "./strings/*": {
-      "import": "./lib/strings/*/index.js",
-      "types": "./lib/strings/*/index.d.ts"
+      "import": "./lib/strings/*/**.js",
+      "types": "./lib/strings/*/**.d.ts"
     },
     "./strings/case": {
       "import": "./lib/strings/case/case.js",
@@ -155,8 +163,8 @@
       "types": "./lib/checks/index.d.ts"
     },
     "./checks/*": {
-      "import": "./lib/checks/*/index.js",
-      "types": "./lib/checks/*/index.d.ts"
+      "import": "./lib/checks/*/**.js",
+      "types": "./lib/checks/*/**.d.ts"
     },
     "./checks/isArray": {
       "import": "./lib/checks/isArray/isArray.js",
@@ -219,8 +227,8 @@
       "types": "./lib/parsers/index.d.ts"
     },
     "./parsers/*": {
-      "import": "./lib/parsers/*/index.js",
-      "types": "./lib/parsers/*/index.d.ts"
+      "import": "./lib/parsers/*/**.js",
+      "types": "./lib/parsers/*/**.d.ts"
     },
     "./parsers/booleans": {
       "import": "./lib/parsers/booleans/booleans.js",
@@ -298,15 +306,16 @@
     "@nlabs/rip-hunter": "2.6.4",
     "google-libphonenumber": "3.2.42",
     "haversine": "1.1.1",
-    "luxon": "3.6.1",
+    "luxon": "3.7.1",
     "numeral": "2.0.6"
   },
   "devDependencies": {
     "@jest/globals": "30.0.4",
+    "@nlabs/lex": "^1.48.6",
     "@types/google-libphonenumber": "^7.4.30",
     "@types/jest": "30.0.0",
     "@types/luxon": "3.6.2",
-    "@types/node": "24.0.10",
+    "@types/node": "24.0.14",
     "@types/numeral": "^2.0.5"
   }
 }

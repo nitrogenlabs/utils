@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ai: {
     maxTokens: 4000,
     model: 'cursor-code',
@@ -9,8 +9,8 @@ module.exports = {
     project: './tsconfig.lint.json'
   },
   jest: {
-    testEnvironment: 'jsdom',
     maxWorkers: 1,
+    testEnvironment: 'jsdom',
     workerIdleMemoryLimit: '512MB'
   },
   outputPath: 'lib',
