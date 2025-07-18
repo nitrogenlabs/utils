@@ -39,6 +39,7 @@
   "emmet.syntaxProfiles": {
     "postcss": "css"
   },
+  "eslint.debug": true,
   "eslint.enable": true,
   "eslint.run": "onType",
   "eslint.validate": [
@@ -47,20 +48,17 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.workingDirectories": [
+    "."
+  ],
+  "eslint.nodePath": "./node_modules",
+  "eslint.runtime": "./node_modules/@nlabs/lex/node_modules/eslint/bin/eslint.js",
+  "eslint.options": {
+    "overrideConfigFile": "node_modules/@nlabs/lex/eslint.config.js"
+  },
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "eslint.debug": true,
-  "eslint.workingDirectories": [
-    {
-      "directory": ".",
-      "changeProcessCWD": true
-    }
-  ],
   "eslint.experimental.useFlatConfig": true,
-  "eslint.options": {
-    "overrideConfigFile": "./eslint.config.js"
-  },
-  "eslint.nodePath": "./node_modules/.bin",
   "explorer.confirmDragAndDrop": false,
   "explorer.decorations.badges": false,
   "files.autoSave": "onFocusChange",

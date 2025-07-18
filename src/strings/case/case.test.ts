@@ -1,4 +1,4 @@
-import { camelCase, capitalize, kebabCase, snakeCase } from './case';
+import {camelCase, capitalize, kebabCase, snakeCase, upperFirst} from './case';
 
 describe('Case Utilities', () => {
   describe('capitalize', () => {
@@ -169,6 +169,33 @@ describe('Case Utilities', () => {
     it('should handle consecutive uppercase letters', () => {
       expect(snakeCase('HTMLParser')).toBe('html_parser');
       expect(snakeCase('URLParser')).toBe('url_parser');
+    });
+  });
+
+  describe('upperFirst', () => {
+    it('should capitalize the first letter and keep the rest unchanged', () => {
+      expect(upperFirst('hello')).toBe('Hello');
+      expect(upperFirst('WORLD')).toBe('WORLD');
+      expect(upperFirst('javascript')).toBe('Javascript');
+    });
+
+    it('should handle single character strings', () => {
+      expect(upperFirst('a')).toBe('A');
+      expect(upperFirst('Z')).toBe('Z');
+    });
+
+    it('should handle empty string', () => {
+      expect(upperFirst('')).toBe('');
+    });
+
+    it('should handle strings with special characters', () => {
+      expect(upperFirst('hello-world')).toBe('Hello-world');
+      expect(upperFirst('user_name')).toBe('User_name');
+    });
+
+    it('should handle strings with numbers', () => {
+      expect(upperFirst('user123')).toBe('User123');
+      expect(upperFirst('123user')).toBe('123user');
     });
   });
 });

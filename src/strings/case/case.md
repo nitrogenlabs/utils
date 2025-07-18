@@ -11,7 +11,7 @@ npm install @nlabs/utils
 ## Usage
 
 ```javascript
-import { capitalize, camelCase, kebabCase, snakeCase } from '@nlabs/utils/strings';
+import { capitalize, camelCase, kebabCase, snakeCase, upperFirst } from '@nlabs/utils/strings';
 ```
 
 ## Functions
@@ -97,6 +97,25 @@ snakeCase('hello world');   // 'hello_world'
 snakeCase('hello-world');   // 'hello_world'
 snakeCase('hello');         // 'hello'
 snakeCase('');              // ''
+```
+
+### upperFirst
+
+Capitalize the first letter of a string while preserving the case of the rest.
+
+```typescript
+function upperFirst(string: string): string
+```
+
+#### Examples
+
+```javascript
+import { upperFirst } from '@nlabs/utils/strings';
+
+upperFirst('hello');        // 'Hello'
+upperFirst('WORLD');        // 'WORLD'
+upperFirst('javascript');   // 'Javascript'
+upperFirst('');             // ''
 ```
 
 ## Use Cases
