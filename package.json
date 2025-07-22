@@ -304,6 +304,7 @@
   },
   "dependencies": {
     "@nlabs/rip-hunter": "2.6.4",
+    "crypto-js": "^4.2.0",
     "google-libphonenumber": "3.2.42",
     "haversine": "1.1.1",
     "luxon": "3.7.1",
@@ -312,6 +313,7 @@
   "devDependencies": {
     "@jest/globals": "30.0.4",
     "@nlabs/lex": "^1.48.6",
+    "@types/crypto-js": "^4.2.2",
     "@types/google-libphonenumber": "^7.4.30",
     "@types/jest": "30.0.0",
     "@types/luxon": "3.6.2",

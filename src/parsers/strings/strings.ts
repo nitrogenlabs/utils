@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import crypto, {Hash} from 'crypto';
+import CryptoJS from 'crypto-js';
 import libphonenumber from 'google-libphonenumber';
 
 const {PhoneNumberFormat, PhoneNumberUtil} = libphonenumber;
@@ -12,18 +12,13 @@ import {isString} from '../../checks/isString/isString';
 import {replace} from '../../strings/replace/replace';
 
 export const createPassword = (password: string, salt: string): string => {
-  // Create encrypted password
   if(salt && password) {
-    const secret: Buffer = crypto.pbkdf2Sync(
-      password,
-      salt,
-      10000,
-      32,
-      'sha512'
-    );
-    const md5: Hash = crypto.createHash('md5');
-    md5.update(secret.toString(), 'utf8');
-    return md5.digest('hex');
+    const secret = CryptoJS.PBKDF2(password, salt, {
+      keySize: 256/32,
+      iterations: 10000
+    });
+    const md5 = CryptoJS.MD5(secret.toString());
+    return md5.toString();
   }
 
   return '';
@@ -33,11 +28,9 @@ export const createHash = (
   key: string,
   salt: string = (+new Date()).toString()
 ): string => {
-  // Create Hash
-  const md5: Hash = crypto.createHash('md5');
   const salted: string = salt ? `${salt}${key}` : key;
-  md5.update(salted, 'utf8');
-  return md5.digest('hex');
+  const md5 = CryptoJS.MD5(salted);
+  return md5.toString();
 };
 
 export const parseArangoId = (id: string): string => {
@@ -84,7 +77,6 @@ export const parseEmail = (email: string): string => {
     return '';
   }
 
-  // Simple email validation without regex
   const parts = parsedEmail.split('@');
   if (parts.length !== 2) {
     return '';
@@ -92,29 +84,24 @@ export const parseEmail = (email: string): string => {
 
   const [localPart, domain] = parts;
 
-  // Check local part (before @)
   if (!localPart || localPart.length > 64 || localPart.startsWith('.') || localPart.endsWith('.')) {
     return '';
   }
 
-  // Check for valid characters in local part (alphanumeric, dot, dash)
   const validLocalChars = /^[a-zA-Z0-9.-]+$/;
   if (!validLocalChars.test(localPart)) {
     return '';
   }
 
-  // Check domain (after @)
   if (!domain || domain.length > 253 || domain.startsWith('.') || domain.endsWith('.')) {
     return '';
   }
 
-  // Check for valid domain structure
   const domainParts = domain.split('.');
   if (domainParts.length < 2) {
     return '';
   }
 
-  // Check each domain part
   for (const part of domainParts) {
     if (!part || part.length > 63 || part.startsWith('-') || part.endsWith('-')) {
       return '';
