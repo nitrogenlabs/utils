@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.7.6",
+  "version": "2.7.7",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
