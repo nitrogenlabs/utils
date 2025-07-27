@@ -111,6 +111,10 @@
       "import": "./lib/arrays/difference/difference.js",
       "types": "./lib/arrays/difference/difference.d.ts"
     },
+    "./arrays/flatten": {
+      "import": "./lib/arrays/flatten/flatten.js",
+      "types": "./lib/arrays/flatten/flatten.d.ts"
+    },
     "./arrays/intersection": {
       "import": "./lib/arrays/intersection/intersection.js",
       "types": "./lib/arrays/intersection/intersection.d.ts"
@@ -158,6 +162,10 @@
     "./strings/trim": {
       "import": "./lib/strings/trim/trim.js",
       "types": "./lib/strings/trim/trim.d.ts"
+    },
+    "./strings/words": {
+      "import": "./lib/strings/words/words.js",
+      "types": "./lib/strings/words/words.d.ts"
     },
     "./checks": {
       "import": "./lib/checks/index.js",

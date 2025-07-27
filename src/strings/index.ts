@@ -4,4 +4,5 @@ export * from './escape/escape';
 export * from './qs/qs';
 export * from './replace/replace';
 export * from './trim/trim';
+export * from './words/words';
 
