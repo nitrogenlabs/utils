@@ -11,7 +11,7 @@ import {uniq} from '../../arrays/uniq/uniq';
 import {isString} from '../../checks/isString/isString';
 import {replace} from '../../strings/replace/replace';
 
-export const createPassword = (password: string | null | undefined, salt: string | null | undefined): string => {
+export const createPassword = (password?: string | null, salt?: string | null): string => {
   if(salt && password) {
     const secret = CryptoJS.PBKDF2(password, salt, {
       keySize: 256/32,
@@ -25,7 +25,7 @@ export const createPassword = (password: string | null | undefined, salt: string
 };
 
 export const createHash = (
-  key: string | null | undefined,
+  key?: string | null,
   salt: string = (+new Date()).toString()
 ): string => {
   const salted: string = salt ? `${salt}${key}` : key || '';
@@ -33,7 +33,7 @@ export const createHash = (
   return md5.toString();
 };
 
-export const parseArangoId = (id: string | null | undefined): string => {
+export const parseArangoId = (id?: string | null): string => {
   if(isString(id) && id !== 'undefined') {
     const idParts: string[] = id.split('/');
 
@@ -59,7 +59,7 @@ export const parseArangoId = (id: string | null | undefined): string => {
 };
 
 export const parseChar = (
-  str: string | null | undefined,
+  str?: string | null,
   max?: number,
   defaultValue?: string
 ): string => {
@@ -70,7 +70,7 @@ export const parseChar = (
   return defaultValue || '';
 };
 
-export const parseEmail = (email: string | null | undefined): string => {
+export const parseEmail = (email?: string | null): string => {
   const parsedEmail = (email || '').trim().substring(0, 128).toLowerCase();
 
   if (parsedEmail === '') {
@@ -111,7 +111,7 @@ export const parseEmail = (email: string | null | undefined): string => {
   return parsedEmail;
 };
 
-export const parseId = (id: string | null | undefined): string => {
+export const parseId = (id?: string | null): string => {
   if(isString(id) && id !== 'undefined') {
     return replace(id.trim(), /[^a-zA-Z0-9]/g, '').substring(0, 32);
   }
@@ -119,7 +119,7 @@ export const parseId = (id: string | null | undefined): string => {
   return '';
 };
 
-export const parsePassword = (password: string | null | undefined): string => (password || '').trim().substring(0, 32);
+export const parsePassword = (password?: string | null): string => (password || '').trim().substring(0, 32);
 
 export const parsePhone = (
   phoneNumber: string,
@@ -152,7 +152,7 @@ export const parseMentions = (str: string = ''): string[] => {
 };
 
 export const parseString = (
-  str: string | null | undefined,
+  str?: string | null,
   max?: number,
   defaultValue = ''
 ): string => {
@@ -202,7 +202,7 @@ export const parseUrl = (url: string): string => {
   return '';
 };
 
-export const parseUsername = (username: string | null | undefined): string => {
+export const parseUsername = (username?: string | null): string => {
   if(isString(username) && username !== 'undefined') {
     return username.replace(/[^\w]/g, '').substring(0, 32).trim().toLowerCase();
   }
@@ -211,7 +211,7 @@ export const parseUsername = (username: string | null | undefined): string => {
 };
 
 export const parseVarChar = (
-  str: string | null | undefined,
+  str?: string | null,
   max?: number,
   defaultValue = ''
 ): string => {
@@ -234,7 +234,7 @@ export const parseVarChar = (
   return updatedString;
 };
 
-export const stripHTML = (html: string): string => {
+export const stripHTML = (html?: string | null): string => {
   if(isString(html) && html !== 'undefined') {
     return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '');
   }
