@@ -103,7 +103,6 @@ export const formatNumber = (
     return valueIfNaN;
   }
 
-  // Handle infinity values
   if(!isFinite(updatedNum)) {
     return updatedNum > 0 ? 'Infinity' : '-Infinity';
   }
@@ -113,34 +112,33 @@ export const formatNumber = (
   }
 
   let order = 0;
+
   if(useOrderSuffix && updatedNum !== 0) {
     const absNum = Math.abs(updatedNum);
     const naturalOrder = Math.floor(Math.log10(absNum) / 3);
     order = Math.max(minOrder, Math.min(naturalOrder, maxOrder, orderSuffixes.length - 1));
     updatedNum = updatedNum / Math.pow(10, order * 3);
   }
-  const orderSuffix = orderSuffixes[order];
 
-  // Determine decimals for order suffixes
+  const orderSuffix = orderSuffixes[order];
   let decimals = maxDecimals;
+
   if(useOrderSuffix) {
     if(maxDecimals === 0) {
-      // Round to integer when maxDecimals is 0
       updatedNum = Math.round(updatedNum);
       decimals = 0;
     } else if(!Number.isInteger(updatedNum)) {
-      // Use 1 decimal if not an integer and maxDecimals > 0
       decimals = Math.max(1, maxDecimals);
     }
   }
 
-  // Ensure decimals is a valid number and clamp to valid range (0-20)
   if(!Number.isFinite(decimals) || decimals < 0) {
     decimals = 0;
   }
+
   let clampedMaxDecimals = Math.max(0, Math.min(20, Math.floor(decimals)));
   let clampedMinDecimals = Math.max(0, Math.min(20, Math.floor(minDecimals)));
-  // Ensure max >= min for toLocaleString
+
   if(clampedMaxDecimals < clampedMinDecimals) {
     clampedMaxDecimals = clampedMinDecimals;
   }
