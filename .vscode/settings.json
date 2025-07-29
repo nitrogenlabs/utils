@@ -1,8 +1,7 @@
 {
   "cSpell.words": [
     "nitrogenlabs",
-    "nlabs",
-    "transpiler"
+    "nlabs"
   ],
   "css.validate": false,
   "editor.autoClosingBrackets": "never",
@@ -52,7 +51,6 @@
     "."
   ],
   "eslint.nodePath": "./node_modules",
-  "eslint.runtime": "./node_modules/@nlabs/lex/node_modules/eslint/bin/eslint.js",
   "eslint.options": {
     "overrideConfigFile": "node_modules/@nlabs/lex/eslint.config.js"
   },

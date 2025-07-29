@@ -1,4 +1,4 @@
-import { parseStack } from './stack-parser';
+import {parseStack} from './stack-parser.js';
 
 describe('parseStack', () => {
   it('should parse stack trace string', () => {

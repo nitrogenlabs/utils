@@ -2,10 +2,10 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import {isEmpty} from '../checks';
-import {merge} from '../objects';
+import {isEmpty} from '../checks/isEmpty/isEmpty.js';
+import {merge} from '../objects/merge/merge.js';
 
-import type {InputSelectGetType, PatternParseType} from '../types/formatters';
+import type {InputSelectGetType, PatternParseType} from '../types/formatters.js';
 
 declare global {
   interface Window {

@@ -1,4 +1,4 @@
-import { flatten } from './flatten';
+import {flatten} from './flatten.js';
 
 describe('flatten', () => {
   it('should flatten a nested array by one level', () => {
@@ -48,7 +48,7 @@ describe('flatten', () => {
 
   it('should handle sparse arrays', () => {
     const sparse = [1, undefined, 3];
-    sparse[1] = [2, 4];
+    sparse[1] = [2, 4] as any;
     const result = flatten(sparse);
     expect(result).toEqual([1, 2, 4, 3]);
   });

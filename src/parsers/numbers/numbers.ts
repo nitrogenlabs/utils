@@ -4,9 +4,9 @@
  */
 import numeral from 'numeral';
 
-import {isString} from '../../checks/isString/isString';
+import {isString} from '../../checks/isString/isString.js';
 
-import type {NumberFormatOptions} from '../../types/numbers';
+import type {NumberFormatOptions} from '../../types/numbers.js';
 
 export const getCurrencyFormat = (
   amount: number = 0,

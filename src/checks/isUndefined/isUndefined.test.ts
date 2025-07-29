@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import { isUndefined } from './isUndefined';
+import {isUndefined} from './isUndefined.js';
 
 describe('isUndefined', () => {
   it('should return true for undefined values', () => {

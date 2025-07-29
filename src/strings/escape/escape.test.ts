@@ -1,4 +1,4 @@
-import { escape, unescape } from './escape';
+import {escape, unescape} from './escape.js';
 
 describe('Escape Utilities', () => {
   describe('escape', () => {

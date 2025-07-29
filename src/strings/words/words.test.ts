@@ -1,4 +1,4 @@
-import { words } from './words';
+import {words} from './words.js';
 
 describe('words', () => {
   it('should split a simple string into words', () => {

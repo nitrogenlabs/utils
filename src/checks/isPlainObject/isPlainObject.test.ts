@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import { isPlainObject } from './isPlainObject';
+import {isPlainObject} from './isPlainObject.js';
 
 describe('isPlainObject', () => {
   it('should return true for plain objects', () => {

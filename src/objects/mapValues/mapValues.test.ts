@@ -1,5 +1,5 @@
 import {jest} from '@jest/globals';
-import {mapValues} from './mapValues';
+import {mapValues} from './mapValues.js';
 
 describe('mapValues', () => {
   it('should transform object values using iteratee function', () => {

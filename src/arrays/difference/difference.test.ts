@@ -1,4 +1,4 @@
-import { difference } from './difference';
+import {difference} from './difference.js';
 
 describe('difference', () => {
   it('should return elements from first array not present in other arrays', () => {

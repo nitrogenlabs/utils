@@ -1,4 +1,4 @@
-import { values } from './values';
+import {values} from './values.js';
 
 describe('values', () => {
   it('should return array of object values', () => {

@@ -1,4 +1,4 @@
-import { compact } from './compact';
+import {compact} from './compact.js';
 
 describe('compact', () => {
   it('should remove falsy values from array', () => {

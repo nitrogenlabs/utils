@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import { isArray } from './isArray';
+import {isArray} from './isArray.js';
 
 describe('isArray', () => {
   it('should return true for arrays', () => {

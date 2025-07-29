@@ -1,4 +1,4 @@
-import {camelCase, capitalize, kebabCase, snakeCase, upperFirst} from './case';
+import {camelCase, capitalize, kebabCase, snakeCase, upperFirst} from './case.js';
 
 describe('Case Utilities', () => {
   describe('capitalize', () => {

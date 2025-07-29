@@ -1,8 +1,8 @@
-export * from './case/case';
-export * from './cn/cn';
-export * from './escape/escape';
-export * from './qs/qs';
-export * from './replace/replace';
-export * from './trim/trim';
-export * from './words/words';
+export * from './case/case.js';
+export * from './cn/cn.js';
+export * from './escape/escape.js';
+export * from './qs/qs.js';
+export * from './replace/replace.js';
+export * from './trim/trim.js';
+export * from './words/words.js';
 

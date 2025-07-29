@@ -1,17 +1,18 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.8.2",
+  "version": "2.8.3",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
+      "default": "./lib/index.js",
       "import": "./lib/index.js",
-      "types": "./lib/index.d.ts",
-      "default": "./lib/index.js"
+      "types": "./lib/index.d.ts"
     },
     "./objects": {
+      "default": "./lib/objects/index.js",
       "import": "./lib/objects/index.js",
       "types": "./lib/objects/index.d.ts"
     },
@@ -92,6 +93,7 @@
       "types": "./lib/objects/values/values.d.ts"
     },
     "./arrays": {
+      "default": "./lib/arrays/index.js",
       "import": "./lib/arrays/index.js",
       "types": "./lib/arrays/index.d.ts"
     },
@@ -132,6 +134,7 @@
       "types": "./lib/arrays/uniq/uniq.d.ts"
     },
     "./strings": {
+      "default": "./lib/strings/index.js",
       "import": "./lib/strings/index.js",
       "types": "./lib/strings/index.d.ts"
     },
@@ -168,6 +171,7 @@
       "types": "./lib/strings/words/words.d.ts"
     },
     "./checks": {
+      "default": "./lib/checks/index.js",
       "import": "./lib/checks/index.js",
       "types": "./lib/checks/index.d.ts"
     },
@@ -220,6 +224,7 @@
       "types": "./lib/checks/isUndefined/isUndefined.d.ts"
     },
     "./formatters": {
+      "default": "./lib/formatters/index.js",
       "import": "./lib/formatters/index.js",
       "types": "./lib/formatters/index.d.ts"
     },
@@ -232,6 +237,7 @@
       "types": "./lib/formatters/input.d.ts"
     },
     "./parsers": {
+      "default": "./lib/parsers/index.js",
       "import": "./lib/parsers/index.js",
       "types": "./lib/parsers/index.d.ts"
     },

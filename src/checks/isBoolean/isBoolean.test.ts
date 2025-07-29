@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import { isBoolean } from './isBoolean';
+import {isBoolean} from './isBoolean.js';
 
 describe('isBoolean', () => {
   it('should return true for boolean values', () => {

@@ -1,4 +1,4 @@
-import { keys } from './keys';
+import {keys} from './keys.js';
 
 describe('keys', () => {
   it('should return array of object keys', () => {

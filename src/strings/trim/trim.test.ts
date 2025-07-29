@@ -1,4 +1,4 @@
-import { trim, trimEnd, trimStart } from './trim';
+import {trim, trimEnd, trimStart} from './trim.js';
 
 describe('Trim Utilities', () => {
   describe('trim', () => {

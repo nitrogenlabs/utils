@@ -3,7 +3,7 @@
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
 
-import { isArray } from '../../checks/isArray/isArray';
+import {isArray} from '../../checks/isArray/isArray.js';
 
 /**
  * Flattens a nested array by one level.

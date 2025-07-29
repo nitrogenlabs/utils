@@ -1,4 +1,4 @@
-import { parse, qs, stringify } from './qs';
+import {parse, qs, stringify} from './qs.js';
 
 describe('qs', () => {
   describe('parse', () => {

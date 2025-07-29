@@ -6,7 +6,7 @@ import {
   pad,
   parseNum,
   roundToHalf
-} from './numbers';
+} from './numbers.js';
 
 describe('Number Parsers', () => {
   describe('getCurrencyFormat', () => {

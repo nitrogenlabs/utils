@@ -1,17 +1,17 @@
-import { assign } from './assign';
+import {assign} from './assign.js';
 
 describe('assign', () => {
   it('should merge multiple objects into target', () => {
     const target = {a: 1, b: 2};
     const source1 = {b: 3, c: 4};
-    const source2 = {c: 5, d: 6};
+    const source2: any = {c: 5, d: 6};
     const result = assign(target, source1, source2);
     expect(result).toEqual({a: 1, b: 3, c: 5, d: 6});
   });
 
   it('should return the target object', () => {
     const target = {a: 1};
-    const source = {b: 2};
+    const source: any = {b: 2};
     const result = assign(target, source);
     expect(result).toBe(target);
   });
@@ -44,7 +44,7 @@ describe('assign', () => {
 
   it('should handle nested objects', () => {
     const target = {a: {x: 1}, b: 2};
-    const source = {a: {y: 2}, c: 3};
+    const source: any = {a: {y: 2}, c: 3};
     const result = assign(target, source);
     expect(result).toEqual({a: {y: 2}, b: 2, c: 3});
   });

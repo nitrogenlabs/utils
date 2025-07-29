@@ -1,4 +1,4 @@
-import { orderBy } from './orderBy';
+import {orderBy} from './orderBy.js';
 
 describe('orderBy', () => {
   it('should sort array by a single property in ascending order', () => {

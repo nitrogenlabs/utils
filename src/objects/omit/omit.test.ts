@@ -1,4 +1,4 @@
-import {omit} from './omit';
+import {omit} from './omit.js';
 
 describe('omit', () => {
   it('should omit specified properties from object', () => {

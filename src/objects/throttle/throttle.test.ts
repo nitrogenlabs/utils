@@ -3,9 +3,9 @@
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
 
-import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
+import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals';
 
-import { throttle } from './throttle';
+import {throttle} from './throttle.js';
 
 describe('throttle', () => {
   let mockFn: jest.Mock;

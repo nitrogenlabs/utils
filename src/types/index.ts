@@ -1,2 +1,3 @@
-export * from './formatters';
-export * from './numbers';
+export * from './formatters.js';
+export * from './numbers.js';
+

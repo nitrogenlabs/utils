@@ -1,4 +1,4 @@
-import { replace } from './replace';
+import {replace} from './replace.js';
 
 describe('Replace Utility', () => {
   describe('string pattern with string replacement', () => {

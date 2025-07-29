@@ -1,4 +1,4 @@
-import { cn } from './cn';
+import {cn} from './cn.js';
 
 describe('cn', () => {
   it('should join simple strings', () => {

@@ -1,4 +1,4 @@
-import { entries } from './entries';
+import {entries} from './entries.js';
 
 describe('entries', () => {
   it('should return array of key-value pairs', () => {

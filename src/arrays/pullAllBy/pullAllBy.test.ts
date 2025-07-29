@@ -1,4 +1,4 @@
-import { pullAllBy } from './pullAllBy';
+import {pullAllBy} from './pullAllBy.js';
 
 describe('pullAllBy', () => {
   it('should remove elements with matching iteratee values', () => {

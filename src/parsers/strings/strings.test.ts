@@ -1,4 +1,4 @@
-import * as strings from './strings';
+import * as strings from './strings.js';
 
 describe('StringService', () => {
   describe('.parseArangoId', () => {

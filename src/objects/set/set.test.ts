@@ -1,4 +1,4 @@
-import { set } from './set';
+import {set} from './set.js';
 
 describe('set', () => {
   it('should set value at path', () => {

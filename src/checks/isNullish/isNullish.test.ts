@@ -2,7 +2,7 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import { isNullish } from './isNullish';
+import {isNullish} from './isNullish.js';
 
 describe('isNullish', () => {
   it('should return true for nullish values', () => {

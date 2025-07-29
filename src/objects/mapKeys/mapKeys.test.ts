@@ -1,5 +1,5 @@
 import {jest} from '@jest/globals';
-import {mapKeys} from './mapKeys';
+import {mapKeys} from './mapKeys.js';
 
 describe('mapKeys', () => {
   it('should transform object keys using iteratee function', () => {

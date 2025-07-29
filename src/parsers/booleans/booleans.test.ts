@@ -1,4 +1,4 @@
-import {parseBoolean} from './booleans';
+import {parseBoolean} from './booleans.js';
 
 describe('parseBoolean', () => {
   describe('basic boolean values', () => {

@@ -1,4 +1,4 @@
-import { cloneDeep } from './clone';
+import {cloneDeep} from './clone.js';
 
 describe('cloneDeep', () => {
   it('should create a deep copy of an object', () => {

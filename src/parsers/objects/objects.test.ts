@@ -1,4 +1,4 @@
-import {lowerCaseKeys, toQueryString} from './objects';
+import {lowerCaseKeys, toQueryString} from './objects.js';
 
 describe('Object Parsers', () => {
   describe('lowerCaseKeys', () => {
