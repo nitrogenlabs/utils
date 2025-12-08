@@ -37,8 +37,8 @@ export const words = (
           continue;
         }
 
-        const camelCaseParts = part.match(/[A-Z]?[a-z\u00C0-\u017F]+(?:'[a-z\u00C0-\u017F]+)*|[A-Z]+(?=[A-Z][a-z]|\b)|[0-9]+|[\u00C0-\u017F]+/g) || [];
-        result.push(...camelCaseParts.filter(p => p.length > 0));
+        const camelCaseParts: string[] = part.match(/[A-Z]?[a-z\u00C0-\u017F]+(?:'[a-z\u00C0-\u017F]+)*|[A-Z]+(?=[A-Z][a-z]|\b)|[0-9]+|[\u00C0-\u017F]+/g) || [];
+        result.push(...camelCaseParts.filter((p: string) => p.length > 0));
       }
     }
 

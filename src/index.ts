@@ -1,8 +1,8 @@
-export * from './arrays';
-export * from './checks';
-export * from './formatters';
-export * from './objects';
-export * from './parsers';
-export * from './strings';
+export * from './arrays/index.js';
+export * from './checks/index.js';
+export * from './formatters/index.js';
+export * from './objects/index.js';
+export * from './parsers/index.js';
+export * from './strings/index.js';
 
-export type * from './types';
+export type * from './types/index.js';
