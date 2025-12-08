@@ -382,6 +382,18 @@ describe('StringService', () => {
     it('should return empty for null inputs', () => {
       expect(strings.createPassword(null as any, 'salt')).toEqual('');
     });
+
+    it('should return unique passwords for different inputs', () => {
+      const password1 = strings.createPassword('password1', 'salt');
+      const password2 = strings.createPassword('password2', 'salt');
+      expect(password1).not.toEqual(password2);
+    });
+
+    it('should return unique passwords for different salt', () => {
+      const password1 = strings.createPassword('password', 'salt1');
+      const password2 = strings.createPassword('password', 'salt2');
+      expect(password1).not.toEqual(password2);
+    });
   });
 
   describe('.createHash', () => {
