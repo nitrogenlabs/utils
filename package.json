@@ -1,7 +1,7 @@
 {
   "name": "@nlabs/utils",
   "description": "Formatting Utilities",
-  "version": "2.8.7",
+  "version": "2.8.8",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "type": "module",
@@ -223,6 +223,24 @@
       "import": "./lib/checks/isUndefined/isUndefined.js",
       "types": "./lib/checks/isUndefined/isUndefined.d.ts"
     },
+    "./date": {
+      "default": "./lib/date/index.js",
+      "import": "./lib/date/index.js",
+      "types": "./lib/date/index.d.ts"
+    },
+    "./dates": {
+      "default": "./lib/dates/index.js",
+      "import": "./lib/dates/index.js",
+      "types": "./lib/dates/index.d.ts"
+    },
+    "./dates/*": {
+      "import": "./lib/dates/*/**.js",
+      "types": "./lib/dates/*/**.d.ts"
+    },
+    "./dates/dates": {
+      "import": "./lib/dates/dates.js",
+      "types": "./lib/dates/dates.d.ts"
+    },
     "./formatters": {
       "default": "./lib/formatters/index.js",
       "import": "./lib/formatters/index.js",
@@ -276,6 +294,12 @@
       "checks/*": [
         "./lib/checks/*"
       ],
+      "date": [
+        "./lib/date/index.d.ts"
+      ],
+      "dates/*": [
+        "./lib/dates/*"
+      ],
       "formatters/*": [
         "./lib/formatters/*"
       ],
@@ -322,13 +346,13 @@
     "google-libphonenumber": "3.2.44",
     "haversine": "1.1.1",
     "luxon": "3.7.2",
+    "@types/luxon": "3.7.1",
     "numeral": "2.0.6"
   },
   "devDependencies": {
     "@nlabs/lex": "^1.58.2",
     "@types/crypto-js": "^4.2.2",
     "@types/google-libphonenumber": "^7.4.30",
-    "@types/luxon": "3.7.1",
     "@types/node": "25.8.0",
     "@types/numeral": "^2.0.5"
   },
