@@ -21,10 +21,14 @@ export const throttle = (
   let lastInvokeTime = 0;
   let trailingCallPending = false;
 
-  const invokeFunc = (time: number) => {
+  const invokeFunc = () => {
     const args = lastArgs;
     const thisArg = lastThis;
     lastArgs = lastThis = undefined;
+
+    if(args === undefined) {
+      return undefined;
+    }
 
     return func.apply(thisArg, args);
   };
@@ -39,7 +43,7 @@ export const throttle = (
     const time = Date.now();
     // Only execute trailing call if lastArgs is set and no new call has come in
     if (trailingCallPending && lastArgs && trailing) {
-      invokeFunc(time);
+      invokeFunc();
       // Don't update lastInvokeTime for trailing calls
     }
     timeoutId = undefined;
@@ -105,7 +109,7 @@ export const throttle = (
   throttled.flush = () => {
     if (timeoutId !== undefined && trailingCallPending && lastArgs) {
       clearTimeout(timeoutId);
-      const result = invokeFunc(Date.now());
+      const result = invokeFunc();
       timeoutId = undefined;
       trailingCallPending = false;
 

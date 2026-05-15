@@ -319,19 +319,17 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
-    "google-libphonenumber": "3.2.43",
+    "google-libphonenumber": "3.2.44",
     "haversine": "1.1.1",
     "luxon": "3.7.2",
     "numeral": "2.0.6"
   },
   "devDependencies": {
-    "@jest/globals": "30.2.0",
-    "@nlabs/lex": "^1.52.1",
+    "@nlabs/lex": "^1.58.2",
     "@types/crypto-js": "^4.2.2",
     "@types/google-libphonenumber": "^7.4.30",
-    "@types/jest": "30.0.0",
     "@types/luxon": "3.7.1",
-    "@types/node": "24.10.1",
+    "@types/node": "25.8.0",
     "@types/numeral": "^2.0.5"
   },
   "overrides": {
@@ -345,6 +343,10 @@
     "nth-check": "^2.1.1",
     "postcss": "^8.5.6",
     "semver-regex": "^4.0.5",
-    "tmp": "^0.2.5"
+    "tmp": "^0.2.5",
+    "postcss-url": {
+      "minimatch": "^3.1.5"
+    },
+    "fast-xml-parser": "^5.7.0"
   }
 }

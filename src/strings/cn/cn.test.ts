@@ -13,11 +13,11 @@ describe('cn', () => {
 
   it('should handle numbers', () => {
     expect(cn('foo', 123)).toBe('foo 123');
-    expect(cn(0, 'foo', 1)).toBe('0 foo 1');
+    expect(cn(0, 'foo', 1)).toBe('foo 1');
   });
 
   it('should handle boolean values', () => {
-    expect(cn('foo', true)).toBe('foo true');
+    expect(cn('foo', true)).toBe('foo');
     expect(cn('foo', false)).toBe('foo');
   });
 
@@ -71,7 +71,7 @@ describe('cn', () => {
       0,
       'final-class'
     );
-    expect(result).toBe('base-class conditional-class array-class nested-conditional 0 final-class');
+    expect(result).toBe('base-class conditional-class array-class nested-conditional final-class');
   });
 
   it('should handle object keys with falsy values', () => {
@@ -87,12 +87,11 @@ describe('cn', () => {
         qux: false
       }
     };
-    // Note: nested objects are not flattened, only top-level keys are processed
-    expect(cn(obj)).toBe('foo');
+    expect(cn(obj)).toBe('foo bar');
   });
 
   it('should handle edge cases', () => {
-    expect(cn('foo', NaN)).toBe('foo NaN');
+    expect(cn('foo', NaN)).toBe('foo');
     expect(cn('foo', Infinity)).toBe('foo Infinity');
     expect(cn('foo', -Infinity)).toBe('foo -Infinity');
   });

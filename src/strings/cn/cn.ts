@@ -3,29 +3,62 @@
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
 
-type ClassValue = string | number | boolean | null | undefined | Record<string, any> | ClassValue[];
+export type ClassDictionary = Record<string, any>;
+export type ClassArray = ClassValue[];
+export type ClassValue = string | number | boolean | null | undefined | ClassDictionary | ClassArray;
+
+const appendClass = (className: string, value: string): string => className ? `${className} ${value}` : value;
+
+const parseClassValue = (value: ClassValue): string => {
+  if(typeof value === 'string' || typeof value === 'number') {
+    return String(value);
+  }
+
+  if(!value || typeof value !== 'object') {
+    return '';
+  }
+
+  let className = '';
+
+  if(Array.isArray(value)) {
+    for(let i = 0, length = value.length; i < length; i++) {
+      const item = value[i];
+
+      if(item) {
+        const parsed = parseClassValue(item);
+
+        if(parsed) {
+          className = appendClass(className, parsed);
+        }
+      }
+    }
+
+    return className;
+  }
+
+  for(const key in value) {
+    if(value[key]) {
+      className = appendClass(className, key);
+    }
+  }
+
+  return className;
+};
 
 export const cn = (...inputs: ClassValue[]): string => {
-  const classes: string[] = [];
+  let className = '';
 
-  for (const input of inputs) {
-    if (input === null || input === undefined) continue;
+  for(let i = 0, length = inputs.length; i < length; i++) {
+    const input = inputs[i];
 
-    if (typeof input === 'string') {
-      if (input) classes.push(input);
-    } else if (typeof input === 'number') {
-      classes.push(String(input));
-    } else if (typeof input === 'boolean') {
-      if (input) classes.push(String(input));
-    } else if (Array.isArray(input)) {
-      const nested = cn(...input);
-      if (nested) classes.push(nested);
-    } else if (typeof input === 'object' && !Array.isArray(input)) {
-      for (const [key, value] of Object.entries(input)) {
-        if (value && key && typeof value !== 'object') classes.push(key);
+    if(input) {
+      const parsed = parseClassValue(input);
+
+      if(parsed) {
+        className = appendClass(className, parsed);
       }
     }
   }
 
-  return classes.join(' ');
+  return className;
 };

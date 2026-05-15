@@ -38,14 +38,14 @@ class PatternMatcher {
     });
   }
 
-  getMatches(pattern: string): any[] {
+  getMatches(pattern: string): RegExpExecArray[] {
     const regexp = new RegExp('{{([^}]+)}}', 'g');
-    const matches = [];
+    const matches: RegExpExecArray[] = [];
     let match = regexp.exec(pattern);
 
     while(match) {
+      matches.push(match);
       match = regexp.exec(pattern);
-      matches.push(match as never);
     }
 
     return matches;

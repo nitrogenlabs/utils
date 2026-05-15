@@ -1,4 +1,3 @@
-import {jest} from '@jest/globals';
 import {mapValues} from './mapValues.js';
 
 describe('mapValues', () => {
@@ -18,7 +17,7 @@ describe('mapValues', () => {
 
   it('should pass correct parameters to iteratee', () => {
     const obj = {a: 1, b: 2};
-    const iteratee = jest.fn((value: number, key: string | symbol) => value + '_' + key.toString());
+    const iteratee = vi.fn((value: number, key: string | symbol) => value + '_' + key.toString());
     const result = mapValues(obj, iteratee);
 
     expect(iteratee).toHaveBeenCalledWith(1, 'a');

@@ -69,9 +69,9 @@ Joins class names together, filtering out falsy values.
 - `...inputs` - Class names to join. Can be:
   - `string` - Direct class names
   - `number` - Converted to string
-  - `boolean` - `true` becomes `'true'`, `false` is ignored
+  - `boolean` - Ignored as a direct value
   - `null` or `undefined` - Ignored
-  - `Record<string, any>` - Object where keys are class names and values are booleans
+  - `Record<string, any>` - Object where keys are class names and truthy values include the key
   - `ClassValue[]` - Arrays of any of the above types (recursively processed)
 
 #### Returns
@@ -175,14 +175,9 @@ The `cn` function is optimized for performance with the following features:
 - Early returns for empty inputs
 - No unnecessary type checking
 
-## Comparison with clsx
+## Relationship to `clsx`
 
-This function provides the same API as `clsx` but with:
-
-- Modern ES syntax
-- Better TypeScript support
-- Optimized performance
-- Smaller bundle size (no external dependencies)
+`cn` follows `clsx`-compatible filtering semantics while staying native to this package.
 
 ## Migration from clsx
 

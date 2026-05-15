@@ -8,10 +8,9 @@ export default {
   eslint: {
     project: './tsconfig.lint.json'
   },
-  jest: {
-    maxWorkers: 1,
-    testEnvironment: 'jsdom',
-    workerIdleMemoryLimit: '512MB'
+  vitest: {
+    environment: 'jsdom',
+    maxWorkers: 1
   },
   outputPath: 'lib',
   targetEnvironment: 'node',

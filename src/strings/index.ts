@@ -5,4 +5,3 @@ export * from './qs/qs.js';
 export * from './replace/replace.js';
 export * from './trim/trim.js';
 export * from './words/words.js';
-
