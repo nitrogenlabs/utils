@@ -369,6 +369,7 @@ describe('StringService', () => {
       expect(result).toBeTruthy();
       expect(typeof result).toBe('string');
       expect(result.length).toBeGreaterThan(0);
+      expect(result).toEqual('65d4098ae2f29f436290f18698b98758');
     });
 
     it('should return empty for empty password', () => {
@@ -402,6 +403,7 @@ describe('StringService', () => {
       expect(result).toBeTruthy();
       expect(typeof result).toBe('string');
       expect(result.length).toBeGreaterThan(0);
+      expect(result).toEqual('ecd52f45cf2d75e9c9fb993e657d52d6');
     });
 
     it('should create hash with default salt', () => {

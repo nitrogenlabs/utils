@@ -465,7 +465,7 @@
     "watch": "lex compile --remove --watch"
   },
   "dependencies": {
-    "crypto-js": "^4.2.0",
+    "@noble/hashes": "^2.3.0",
     "google-libphonenumber": "3.2.46",
     "haversine": "1.1.1",
     "luxon": "3.7.2",
@@ -474,7 +474,6 @@
   },
   "devDependencies": {
     "@nlabs/lex": "^1.59.4",
-    "@types/crypto-js": "^4.2.2",
     "@types/google-libphonenumber": "^7.4.31",
     "@types/node": "26.2.0",
     "@types/numeral": "^2.0.5"

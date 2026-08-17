@@ -2,7 +2,10 @@
  * Copyright (c) 2025-Present, Nitrogen Labs, Inc.
  * Copyrights licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
-import CryptoJS from 'crypto-js';
+import {md5} from '@noble/hashes/legacy.js';
+import {pbkdf2} from '@noble/hashes/pbkdf2.js';
+import {sha256} from '@noble/hashes/sha2.js';
+import {bytesToHex, utf8ToBytes} from '@noble/hashes/utils.js';
 import libphonenumber from 'google-libphonenumber';
 
 const {PhoneNumberFormat, PhoneNumberUtil} = libphonenumber;
@@ -13,12 +16,8 @@ import {replace} from '../../strings/replace/replace.js';
 
 export const createPassword = (password?: string | null, salt?: string | null): string => {
   if(salt && password) {
-    const secret = CryptoJS.PBKDF2(password, salt, {
-      keySize: 256/32,
-      iterations: 10000
-    });
-    const md5 = CryptoJS.MD5(secret.toString());
-    return md5.toString();
+    const secret = pbkdf2(sha256, password, salt, {c: 10000, dkLen: 32});
+    return bytesToHex(md5(utf8ToBytes(bytesToHex(secret))));
   }
 
   return '';
@@ -29,8 +28,7 @@ export const createHash = (
   salt: string = (+new Date()).toString()
 ): string => {
   const salted: string = salt ? `${salt}${key}` : key || '';
-  const md5 = CryptoJS.MD5(salted);
-  return md5.toString();
+  return bytesToHex(md5(utf8ToBytes(salted)));
 };
 
 export const parseArangoId = (id?: string | null): string => {
