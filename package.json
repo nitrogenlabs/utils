@@ -469,11 +469,11 @@
     "google-libphonenumber": "3.2.46",
     "haversine": "1.1.1",
     "luxon": "3.7.2",
-    "@types/luxon": "3.7.1",
+    "@types/luxon": "3.7.4",
     "numeral": "2.0.6"
   },
   "devDependencies": {
-    "@nlabs/lex": "^1.59.4",
+    "@nlabs/lex": "^1.59.5",
     "@types/google-libphonenumber": "^7.4.31",
     "@types/node": "26.2.0",
     "@types/numeral": "^2.0.5"
