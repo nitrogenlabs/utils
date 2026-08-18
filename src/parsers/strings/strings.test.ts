@@ -157,14 +157,16 @@ describe('StringService', () => {
       expect(strings.parsePhone('')).toEqual('');
     });
 
-    it('should handle valid phone number format', () => {
-      const result = strings.parsePhone('+1-555-123-4567');
-      expect(typeof result).toBe('string');
+    it('should format a valid international number as E.164', () => {
+      expect(strings.parsePhone('+1 202-555-0123')).toEqual('+12025550123');
     });
 
-    it('should handle phone number with country code', () => {
-      const result = strings.parsePhone('555-123-4567', 'US');
-      expect(typeof result).toBe('string');
+    it('should format a valid number using the supplied country code', () => {
+      expect(strings.parsePhone('(202) 555-0123', 'US')).toEqual('+12025550123');
+    });
+
+    it('should return empty for an invalid country code', () => {
+      expect(strings.parsePhone('202-555-0123', 'XX')).toEqual('');
     });
   });
 

@@ -6,9 +6,7 @@ import {md5} from '@noble/hashes/legacy.js';
 import {pbkdf2} from '@noble/hashes/pbkdf2.js';
 import {sha256} from '@noble/hashes/sha2.js';
 import {bytesToHex, utf8ToBytes} from '@noble/hashes/utils.js';
-import libphonenumber from 'google-libphonenumber';
-
-const {PhoneNumberFormat, PhoneNumberUtil} = libphonenumber;
+import {parsePhoneNumberFromString, type CountryCode} from 'libphonenumber-js/max';
 
 import {uniq} from '../../arrays/uniq/uniq.js';
 import {isString} from '../../checks/isString/isString.js';
@@ -123,17 +121,15 @@ export const parsePhone = (
   phoneNumber: string,
   countryCode: string = 'US'
 ): string => {
-  const phoneUtil = PhoneNumberUtil.getInstance();
-
   try {
-    const parsedNumber = phoneUtil.parse(phoneNumber, countryCode);
+    const parsedNumber = parsePhoneNumberFromString(phoneNumber, countryCode as CountryCode);
 
-    if(phoneUtil.isValidNumber(parsedNumber)) {
-      return phoneUtil.format(parsedNumber, PhoneNumberFormat.E164);
+    if(parsedNumber?.isValid()) {
+      return parsedNumber.number;
     }
 
     return '';
-  } catch(e) {
+  } catch {
     return '';
   }
 };
